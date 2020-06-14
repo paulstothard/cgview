@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ca.ualberta.stothard.cgview</groupId>
+  <artifactId>cgview</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>cgview</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-awt-util -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-awt-util</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-dom -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-dom</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-svggen -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-svggen</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-util -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-util</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-constants -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-constants</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-xml -->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-xml</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.bluestemsoftware.open.maven.tparty/xerces-impl -->
+    <dependency>
+      <groupId>org.bluestemsoftware.open.maven.tparty</groupId>
+      <artifactId>xerces-impl</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/jargs/jargs -->
+    <dependency>
+      <groupId>jargs</groupId>
+      <artifactId>jargs</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>wso2-maven2-repository</id>
+      <name>WSO2 Maven2 Repository</name>
+      <url>http://dist.wso2.org/maven2</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>ca.ualberta.stothard.cgview.CgviewIO</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
