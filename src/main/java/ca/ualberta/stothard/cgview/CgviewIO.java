@@ -118,7 +118,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -o  Output file to create.");
     System.err.println("");
     System.err.println(
-      "   optional arguments (these override corresponding values specified in XML input):"
+      "   optional arguments (when used these override corresponding values specified in XML input):"
     );
     System.err.println("");
     System.err.println("      -A  Font size for feature labels (default 10).");
@@ -134,7 +134,7 @@ public class CgviewIO implements CgviewConstants {
       "      -h  HTML file to create for image map functionality."
     );
     System.err.println(
-      "      -I  Allow labels to be drawn on inside of circle, T or F (default F)."
+      "      -I  Allow labels to be drawn on inside of circle, T or F (default is T for zoomed maps and F for unzoomed)."
     );
     System.err.println(
       "      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output."
@@ -146,9 +146,9 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -R  Remove feature labels, T or F (default F).");
     System.err.println("      -U  Font size for sequence ruler (default 8).");
     System.err.println(
-      "      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
+      "      -u  Include overlip.js calls for mouseover labels for png and jpg image maps in html output, T or F (default T)."
     );
-    System.err.println("      -w  Width of map (default 700).");
+    System.err.println("      -W  Width of map (default 700).");
     System.err.println("      -z  Zoom multiplier (default 1).");
     System.err.println("");
     System.err.println("   example usage:");
@@ -170,17 +170,28 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -i  Input file in CGView XML or TAB format.");
     System.err.println("      -s  Output directory for image series.");
     System.err.println("");
-    System.err.println("   optional arguments:");
+    System.err.println(
+      "   optional arguments (when used these override corresponding values specified in XML input):"
+    );
     System.err.println("");
+    System.err.println("      -A  Font size for feature labels (default 10).");
+    System.err.println("      -D  Font size for legends (default 8).");
     System.err.println(
       "      -e  Exclude SVG output from image series, T or F (default F)."
+    );
+    System.err.println("      -H  Height of map (default 700).");
+    System.err.println(
+      "      -I  Allow labels to be drawn on inside of circle, T or F (default is T for zoomed maps and F for unzoomed maps)."
     );
     System.err.println(
       "      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output."
     );
+    System.err.println("      -r  Remove legends, T or F (default F).");
+    System.err.println("      -U  Font size for sequence ruler (default 8).");
     System.err.println(
       "      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
     );
+    System.err.println("      -W  Width of map (default 700).");
     System.err.println(
       "      -x  Zoom multipliers to use, comma-separated (default is 1,6,36)."
     );
