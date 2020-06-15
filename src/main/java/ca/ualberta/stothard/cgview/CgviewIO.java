@@ -794,7 +794,7 @@ public class CgviewIO implements CgviewConstants {
       }
 
       if (zoomOutFile != null) {
-        if (imageFormat.equalsIgnoreCase("svgz")) {
+        if (imageFormat.equalsIgnoreCase("svg")) {
           // htmlDocument.addButton(INCLUDES_OUT_PATH + "/" + INDEX_BUTTON, "index_svg.html", "[Full
           // view]");
           htmlDocument.addButton(
@@ -843,7 +843,7 @@ public class CgviewIO implements CgviewConstants {
       }
 
       if (!excludeSVGValue.booleanValue()) {
-        if (imageFormat.equalsIgnoreCase("svgz")) {
+        if (imageFormat.equalsIgnoreCase("svg")) {
           htmlDocument.addButton(
             INCLUDES_OUT_PATH + "/" + TO_PNG_BUTTON,
             Integer.toString((int) cgview.getDesiredZoom()) +
@@ -927,7 +927,7 @@ public class CgviewIO implements CgviewConstants {
             Integer.toString((int) cgview.getDesiredZoom()) +
             "_" +
             Integer.toString(cgview.getDesiredZoomCenter()) +
-            ".svgz"
+            ".svg"
           );
         svgLength = svgFile.length();
         svgLength = (long) Math.floor((float) svgLength / 1000.0f + 0.5f);
@@ -949,7 +949,7 @@ public class CgviewIO implements CgviewConstants {
       pngLength = (long) Math.floor((float) pngLength / 1000.0f + 0.5f);
 
       if (!excludeSVGValue.booleanValue()) {
-        if (imageFormat.equalsIgnoreCase("svgz")) {
+        if (imageFormat.equalsIgnoreCase("svg")) {
           htmlDocument.addText("Displayed SVG file size: ");
           if (svgLength > 1000) {
             htmlDocument.addSpanWarningStart();
@@ -2151,7 +2151,7 @@ public class CgviewIO implements CgviewConstants {
               "png",
               zoomValues[k + 1]
             );
-            // svgz
+            // svg
             if (!excludeSVGValue.booleanValue()) {
               writeImageToFile(
                 cgview,
@@ -2163,8 +2163,8 @@ public class CgviewIO implements CgviewConstants {
                 "_" +
                 Integer.toString(imageToDraw.getZoomCenter()) +
                 "." +
-                "svgz",
-                "svgz",
+                "svg",
+                "svg",
                 zoomValues[k + 1],
                 true
               );
@@ -2185,7 +2185,7 @@ public class CgviewIO implements CgviewConstants {
               "png",
               0
             );
-            // svgz
+            // svg
             if (!excludeSVGValue.booleanValue()) {
               writeImageToFile(
                 cgview,
@@ -2197,8 +2197,8 @@ public class CgviewIO implements CgviewConstants {
                 "_" +
                 Integer.toString(imageToDraw.getZoomCenter()) +
                 "." +
-                "svgz",
-                "svgz",
+                "svg",
+                "svg",
                 0,
                 true
               );
@@ -2311,7 +2311,7 @@ public class CgviewIO implements CgviewConstants {
                 null
               );
 
-              // svgz
+              // svg
               if (!excludeSVGValue.booleanValue()) {
                 writeHTMLToFile(
                   cgview,
@@ -2321,8 +2321,8 @@ public class CgviewIO implements CgviewConstants {
                   "_" +
                   Integer.toString(imageToDraw.getZoomCenter()) +
                   "." +
-                  "svgz",
-                  "svgz",
+                  "svg",
+                  "svg",
                   seriesValue + File.separator + "index_svg.html",
                   null,
                   imageToDraw.getZoomInFilePrefix(
@@ -2342,8 +2342,8 @@ public class CgviewIO implements CgviewConstants {
                   "_" +
                   Integer.toString(imageToDraw.getZoomCenter()) +
                   "." +
-                  "svgz",
-                  "svgz",
+                  "svg",
+                  "svg",
                   seriesValue +
                   File.separator +
                   Integer.toString(imageToDraw.getZoomValue()) +
@@ -2383,7 +2383,7 @@ public class CgviewIO implements CgviewConstants {
                 null
               );
 
-              // svgz
+              // svg
               if (!excludeSVGValue.booleanValue()) {
                 writeHTMLToFile(
                   cgview,
@@ -2393,8 +2393,8 @@ public class CgviewIO implements CgviewConstants {
                   "_" +
                   Integer.toString(imageToDraw.getZoomCenter()) +
                   "." +
-                  "svgz",
-                  "svgz",
+                  "svg",
+                  "svg",
                   seriesValue + File.separator + "index_svg.html",
                   null,
                   null,
@@ -2444,7 +2444,7 @@ public class CgviewIO implements CgviewConstants {
                 "html"
               );
 
-              // svgz
+              // svg
               if (!excludeSVGValue.booleanValue()) {
                 writeHTMLToFile(
                   cgview,
@@ -2454,8 +2454,8 @@ public class CgviewIO implements CgviewConstants {
                   "_" +
                   Integer.toString(imageToDraw.getZoomCenter()) +
                   "." +
-                  "svgz",
-                  "svgz",
+                  "svg",
+                  "svg",
                   seriesValue +
                   File.separator +
                   Integer.toString(imageToDraw.getZoomValue()) +
@@ -2519,7 +2519,7 @@ public class CgviewIO implements CgviewConstants {
                 "html"
               );
 
-              // svgz
+              // svg
               if (!excludeSVGValue.booleanValue()) {
                 writeHTMLToFile(
                   cgview,
@@ -2529,8 +2529,8 @@ public class CgviewIO implements CgviewConstants {
                   "_" +
                   Integer.toString(imageToDraw.getZoomCenter()) +
                   "." +
-                  "svgz",
-                  "svgz",
+                  "svg",
+                  "svg",
                   seriesValue +
                   File.separator +
                   Integer.toString(imageToDraw.getZoomValue()) +
