@@ -58,12 +58,8 @@ public class CgviewTest1 implements CgviewConstants {
     try {
       //create a PNG file
       CgviewIO.writeToPNGFile(cgview, "test_maps/CgviewTest1.png");
-      //create a JPG file
-      CgviewIO.writeToJPGFile(cgview, "test_maps/CgviewTest1.jpg");
       //create an SVG file with embedded fonts
       CgviewIO.writeToSVGFile(cgview, "test_maps/CgviewTest1.svg", false);
-      //create an SVGZ file with embedded fonts
-      CgviewIO.writeToSVGFile(cgview, "test_maps/CgviewTest1.svgz", true);
       System.exit(0);
     } catch (IOException e) {
       e.printStackTrace(System.err);
