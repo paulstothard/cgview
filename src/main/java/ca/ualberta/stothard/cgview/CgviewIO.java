@@ -50,6 +50,8 @@ public class CgviewIO implements CgviewConstants {
 
   private static Double tickDensityValue;
 
+  private static final String CGVIEW_VERSION = "CGView 1.0.0 2020-06-14";
+
   private static final String PROBLEM_MESSAGE =
     "The following error occurred: ";
 
@@ -89,56 +91,76 @@ public class CgviewIO implements CgviewConstants {
   private static final String EXTERNAL_LEGEND = "legend.png";
 
   private static void printUsage() {
-    System.err.println("usage: java -jar cgview.jar [OPTION]...");
-    System.err.println("-A <integer> Specifies a label font size.");
-    System.err.println(
-      "-c <integer> Specifies the base to center on when zooming."
-    );
-    System.err.println("-D <integer> Specifies a legend font size.");
-    System.err.println(
-      "-d <real> Specifies tick density, between 0 and 1.0. Default is 1.0."
-    );
-    System.err.println(
-      "-E <boolean> Whether or not to embed vector-based text in SVG output."
-    );
-    System.err.println(
-      "-e <boolean> Whether or not to exclude SVG output from image series."
-    );
-    System.err.println(
-      "-f <format> The format of the output: PNG, JPG, SVG, or SVGZ."
-    );
-    System.err.println("-h <file> HTML file to create.");
-    System.err.println("-H <integer> The height of the map.");
-    System.err.println("-i <file> The input file to parse.");
-    System.err.println(
-      "-I <boolean> Whether or not to draw labels on the inside of the backbone circle."
-    );
-    System.err.println("-L <integer> The width of an external legend.");
-    System.err.println("-o <file> The image file to create.");
-    System.err.println(
-      "-p <path> The path to the image file in the HTML file created using the -h option."
-    );
-    System.err.println("-r <boolean> Whether or not to remove legends.");
-    System.err.println("-R <boolean> Whether or not to remove labels.");
-    System.err.println("-s <directory> Directory to receive an image series.");
-    System.err.println(
-      "-S <boolean> Whether or not to reference external stylesheet in HTML output."
-    );
-    System.err.println(
-      "-u <boolean> Whether or not to reference overlib.js in HTML output."
-    );
-    System.err.println("-U <integer> Specifies a sequence ruler font size.");
-    System.err.println("-W <integer> The width of the map.");
-    System.err.println(
-      "-x <string> Comma separated zoom values for image series."
-    );
-    System.err.println("-z <real> The factor to zoom in by.");
-    System.err.println(
-      "Example usage: java -jar cgview.jar -f png -i cybercell.xml -o my_picture.png -h view_image.html."
-    );
-    System.err.println(
-      "Example usage: java -jar cgview.jar -i cybercell.xml -s directory_for_series -e true."
-    );
+    System.err.println("CGView - drawing circular genome maps.");
+    System.err.println("");
+    System.err.println("DISPLAY HELP AND EXIT:");
+    System.err.println("");
+    System.err.println("  usage:");
+    System.err.println("");
+    System.err.println("     java -jar cgview.jar --help");
+    System.err.println("");
+    System.err.println("DISPLAY VERSION AND EXIT:");
+    System.err.println("");
+    System.err.println("  usage:");
+    System.err.println("");
+    System.err.println("     java -jar cgview.jar --version");
+    System.err.println("");
+    System.err.println("CREATING A SINGLE MAP IMAGE:");
+    System.err.println("");
+    System.err.println("   usage:");
+    System.err.println("");
+    System.err.println("      java -jar cgview.jar -i <file> -f <format> -o <file> [Options]");
+    System.err.println("");
+    System.err.println("   required arguments:");
+    System.err.println("");
+    System.err.println("      -i  Input file in CGView XML or TAB format.");
+    System.err.println("      -f  Output file format: png, jpg, svg, or svgz.");
+    System.err.println("      -o  Output file to create.");
+    System.err.println("");
+    System.err.println("   optional arguments (these override corresponding values specified in XML input):");
+    System.err.println("");
+    System.err.println("      -A  Font size for feature labels (default 10).");
+    System.err.println("      -c  Base position to center on when using -z option (default 1).");
+    System.err.println("      -D  Font size for legends (default 8).");
+    System.err.println("      -d  Density of tick marks, between 0 and 1.0 (default 1.0).");
+    System.err.println("      -E  Embed vector-based text in SVG output, T or F (default T).");
+    System.err.println("      -H  Height of map (default 700).");
+    System.err.println("      -h  HTML file to create for image map functionality.");
+    System.err.println("      -I  Allow labels to be drawn on inside of circle, T or F (default F).");
+    System.err.println("      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output.");
+    System.err.println("      -p  Path to image file in HTML file created using -h (default is -o value).");
+    System.err.println("      -r  Remove legends, T or F (default F).");
+    System.err.println("      -R  Remove feature labels, T or F (default F).");
+    System.err.println("      -U  Font size for sequence ruler (default 8).");
+    System.err.println("      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T).");
+    System.err.println("      -w  Width of map (default 700).");
+    System.err.println("      -z  Zoom multiplier (default 1).");
+    System.err.println("");
+    System.err.println("   example usage:");
+    System.err.println("");
+    System.err.println("      java -jar cgview.jar -i test.xml -o map.png -f png");
+    System.err.println("");
+    System.err.println("CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:");
+    System.err.println("");
+    System.err.println("   usage:");
+    System.err.println("");
+    System.err.println("      java -jar cgview.jar -i <file> -s <directory> [Options]");
+    System.err.println("");
+    System.err.println("   required arguments:");
+    System.err.println("");
+    System.err.println("      -i  Input file in CGView XML or TAB format.");
+    System.err.println("      -s  Output directory for image series.");
+    System.err.println("");
+    System.err.println("   optional arguments:");
+    System.err.println("");
+    System.err.println("      -e  Exclude SVG output from image series, T or F (default F).");
+    System.err.println("      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output.");
+    System.err.println("      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T).");
+    System.err.println("      -x  Zoom multipliers to use, comma-separated (default is 1,6,36).");
+    System.err.println("");
+    System.err.println("   example usage:");
+    System.err.println("");
+    System.err.println("      java -jar cgview.jar -i test.xml -o image_series");
   }
 
   /**
@@ -1216,6 +1238,8 @@ public class CgviewIO implements CgviewConstants {
 
   public static void main(String args[]) {
     CmdLineParser parser = new CmdLineParser();
+    CmdLineParser.Option help = parser.addBooleanOption("help");
+    CmdLineParser.Option version = parser.addBooleanOption("version");    
     CmdLineParser.Option labelFont = parser.addIntegerOption('A', "labelFont");
     CmdLineParser.Option centerBase = parser.addIntegerOption(
       'c',
@@ -1273,6 +1297,17 @@ public class CgviewIO implements CgviewConstants {
       printUsage();
       System.exit(1);
     }
+
+    // Process help and version options first
+    if (Boolean.TRUE.equals((Boolean) parser.getOptionValue(help))) {
+      printUsage();
+      System.exit(0);
+    }
+
+    if (Boolean.TRUE.equals((Boolean) parser.getOptionValue(version))) {
+      System.err.println(CGVIEW_VERSION);
+      System.exit(0);
+    }    
 
     // Extract the values entered for the various options -- if the
     // options were not specified, the corresponding values will be
