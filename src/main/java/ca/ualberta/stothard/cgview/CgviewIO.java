@@ -42,15 +42,13 @@ public class CgviewIO implements CgviewConstants {
   private static String seriesValue;
   private static String seriesNumbersValue;
 
-  private static Boolean embedFontsValue;
-
   private static Integer legendFontValue;
   private static Integer rulerFontValue;
   private static Integer labelFontValue;
 
   private static Double tickDensityValue;
 
-  private static final String CGVIEW_VERSION = "CGView 1.0.0 2020-06-14";
+  private static final String CGVIEW_VERSION = "CGView 2.0.0 2020-06-14";
 
   private static final String PROBLEM_MESSAGE =
     "The following error occurred: ";
@@ -109,7 +107,9 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("");
     System.err.println("   usage:");
     System.err.println("");
-    System.err.println("      java -jar cgview.jar -i <file> -f <format> -o <file> [Options]");
+    System.err.println(
+      "      java -jar cgview.jar -i <file> -f <format> -o <file> [Options]"
+    );
     System.err.println("");
     System.err.println("   required arguments:");
     System.err.println("");
@@ -117,34 +117,53 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -f  Output file format: png, jpg, svg, or svgz.");
     System.err.println("      -o  Output file to create.");
     System.err.println("");
-    System.err.println("   optional arguments (these override corresponding values specified in XML input):");
+    System.err.println(
+      "   optional arguments (these override corresponding values specified in XML input):"
+    );
     System.err.println("");
     System.err.println("      -A  Font size for feature labels (default 10).");
-    System.err.println("      -c  Base position to center on when using -z option (default 1).");
+    System.err.println(
+      "      -c  Base position to center on when using -z option (default 1)."
+    );
     System.err.println("      -D  Font size for legends (default 8).");
-    System.err.println("      -d  Density of tick marks, between 0 and 1.0 (default 1.0).");
-    System.err.println("      -E  Embed vector-based text in SVG output, T or F (default T).");
+    System.err.println(
+      "      -d  Density of tick marks, between 0 and 1.0 (default 1.0)."
+    );
     System.err.println("      -H  Height of map (default 700).");
-    System.err.println("      -h  HTML file to create for image map functionality.");
-    System.err.println("      -I  Allow labels to be drawn on inside of circle, T or F (default F).");
-    System.err.println("      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output.");
-    System.err.println("      -p  Path to image file in HTML file created using -h (default is -o value).");
+    System.err.println(
+      "      -h  HTML file to create for image map functionality."
+    );
+    System.err.println(
+      "      -I  Allow labels to be drawn on inside of circle, T or F (default F)."
+    );
+    System.err.println(
+      "      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output."
+    );
+    System.err.println(
+      "      -p  Path to image file in HTML file created using -h (default is -o value)."
+    );
     System.err.println("      -r  Remove legends, T or F (default F).");
     System.err.println("      -R  Remove feature labels, T or F (default F).");
     System.err.println("      -U  Font size for sequence ruler (default 8).");
-    System.err.println("      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T).");
+    System.err.println(
+      "      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
+    );
     System.err.println("      -w  Width of map (default 700).");
     System.err.println("      -z  Zoom multiplier (default 1).");
     System.err.println("");
     System.err.println("   example usage:");
     System.err.println("");
-    System.err.println("      java -jar cgview.jar -i test.xml -o map.png -f png");
+    System.err.println(
+      "      java -jar cgview.jar -i test.xml -o map.png -f png"
+    );
     System.err.println("");
     System.err.println("CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:");
     System.err.println("");
     System.err.println("   usage:");
     System.err.println("");
-    System.err.println("      java -jar cgview.jar -i <file> -s <directory> [Options]");
+    System.err.println(
+      "      java -jar cgview.jar -i <file> -s <directory> [Options]"
+    );
     System.err.println("");
     System.err.println("   required arguments:");
     System.err.println("");
@@ -153,14 +172,24 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("");
     System.err.println("   optional arguments:");
     System.err.println("");
-    System.err.println("      -e  Exclude SVG output from image series, T or F (default F).");
-    System.err.println("      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output.");
-    System.err.println("      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T).");
-    System.err.println("      -x  Zoom multipliers to use, comma-separated (default is 1,6,36).");
+    System.err.println(
+      "      -e  Exclude SVG output from image series, T or F (default F)."
+    );
+    System.err.println(
+      "      -L  Width of user-supplied legend png file (legend.png) to be referenced in html output."
+    );
+    System.err.println(
+      "      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
+    );
+    System.err.println(
+      "      -x  Zoom multipliers to use, comma-separated (default is 1,6,36)."
+    );
     System.err.println("");
     System.err.println("   example usage:");
     System.err.println("");
-    System.err.println("      java -jar cgview.jar -i test.xml -o image_series");
+    System.err.println(
+      "      java -jar cgview.jar -i test.xml -o image_series"
+    );
   }
 
   /**
@@ -169,8 +198,6 @@ public class CgviewIO implements CgviewConstants {
    *
    * @param cgview the Cgview object.
    * @param filename the file to create.
-   * @param embedFonts whether or not to embed fonts in the SVG. Embedded fonts produce a much nicer
-   *     map but yield a larger file.
    * @param useCompression whether or not to generate compressed SVG (SVGZ).
    * @param nextZoomValue the zoom value of the next Cgview map to draw in the series, or <code>0
    *     </code> if there is not another Cgview in the series.
@@ -184,7 +211,6 @@ public class CgviewIO implements CgviewConstants {
   private static void writeToSVGFile(
     Cgview cgview,
     String filename,
-    boolean embedFonts,
     boolean useCompression,
     int nextZoomValue,
     boolean keepLastLabels
@@ -204,11 +230,12 @@ public class CgviewIO implements CgviewConstants {
 
     SVGGraphics2D graphics2D;
 
-    if (embedFonts) {
-      graphics2D = new SVGGraphics2D(ctx, true);
-    } else {
-      graphics2D = new SVGGraphics2D(ctx, false);
-    }
+    //public SVGGraphics2D(SVGGeneratorContext generatorCtx,
+    //boolean textAsShapes)
+    //generatorCtx - the SVGGeneratorContext instance that will provide all useful information to the generator.
+    //textAsShapes - if true, all text is turned into SVG shapes in the convertion. No SVG text is output.
+
+    graphics2D = new SVGGraphics2D(ctx, true);
 
     //graphics2D.setSVGCanvasSize(new Dimension(cgview.getWidth(),cgview.getHeight()));
 
@@ -433,8 +460,6 @@ public class CgviewIO implements CgviewConstants {
    *
    * @param cgview the Cgview object.
    * @param filename the file to create.
-   * @param embedFonts whether or not to embed fonts in the SVG. Embedded fonts produce a much nicer
-   *     map but yield a larger file.
    * @param useCompression whether or not to generate compressed SVG (SVGZ).
    * @throws FileNotFoundException
    * @throws IOException
@@ -444,11 +469,10 @@ public class CgviewIO implements CgviewConstants {
   public static void writeToSVGFile(
     Cgview cgview,
     String filename,
-    boolean embedFonts,
     boolean useCompression
   )
     throws FileNotFoundException, IOException, UnsupportedEncodingException, SVGGraphics2DIOException {
-    writeToSVGFile(cgview, filename, embedFonts, useCompression, -1, false);
+    writeToSVGFile(cgview, filename, useCompression, -1, false);
   }
 
   /**
@@ -457,8 +481,6 @@ public class CgviewIO implements CgviewConstants {
    *
    * @param cgview the Cgview object.
    * @param filename the file to create.
-   * @param embedFonts whether or not to embed fonts in the SVG. Embedded fonts produce a much nicer
-   *     map but yield a larger file.
    * @param useCompression whether or not to generate compressed SVG (SVGZ).
    * @param keepLastLabels whether or not to use labels generated by a previous call to one of the
    *     Cgview objects draw() or drawZoomed() methods.
@@ -470,19 +492,11 @@ public class CgviewIO implements CgviewConstants {
   public static void writeToSVGFile(
     Cgview cgview,
     String filename,
-    boolean embedFonts,
     boolean useCompression,
     boolean keepLastLabels
   )
     throws FileNotFoundException, IOException, UnsupportedEncodingException, SVGGraphics2DIOException {
-    writeToSVGFile(
-      cgview,
-      filename,
-      embedFonts,
-      useCompression,
-      -1,
-      keepLastLabels
-    );
+    writeToSVGFile(cgview, filename, useCompression, -1, keepLastLabels);
   }
 
   /**
@@ -1106,8 +1120,6 @@ public class CgviewIO implements CgviewConstants {
    * @param cgview the Cgview object.
    * @param filename the file to create.
    * @param imageFormat the image format to create ("svg", "svgz", "png", or "jpg").
-   * @param embedFonts whether or not to embed fonts in the SVG. Embedded fonts produce a much nicer
-   *     map but yield a larger file.
    * @param nextZoomValue the zoom value of the next Cgview map to draw in the series, or <code>0
    *     </code> if there is not another Cgview in the series.
    */
@@ -1115,17 +1127,9 @@ public class CgviewIO implements CgviewConstants {
     Cgview cgview,
     String filename,
     String imageFormat,
-    boolean embedFonts,
     int nextZoomValue
   ) {
-    writeImageToFile(
-      cgview,
-      filename,
-      imageFormat,
-      embedFonts,
-      nextZoomValue,
-      false
-    );
+    writeImageToFile(cgview, filename, imageFormat, nextZoomValue, false);
   }
 
   /**
@@ -1134,8 +1138,6 @@ public class CgviewIO implements CgviewConstants {
    * @param cgview the Cgview object.
    * @param filename the file to create.
    * @param imageFormat the image format to create ("svg", "svgz", "png", or "jpg").
-   * @param embedFonts whether or not to embed fonts in the SVG. Embedded fonts produce a much nicer
-   *     map but yield a larger file.
    * @param nextZoomValue the zoom value of the next Cgview map to draw in the series, or <code>0
    *     </code> if there is not another Cgview in the series.
    */
@@ -1143,29 +1145,14 @@ public class CgviewIO implements CgviewConstants {
     Cgview cgview,
     String filename,
     String imageFormat,
-    boolean embedFonts,
     int nextZoomValue,
     boolean keepLastLabels
   ) {
     try {
       if (imageFormat.equalsIgnoreCase("svg")) {
-        writeToSVGFile(
-          cgview,
-          filename,
-          embedFonts,
-          false,
-          nextZoomValue,
-          keepLastLabels
-        );
+        writeToSVGFile(cgview, filename, false, nextZoomValue, keepLastLabels);
       } else if (imageFormat.equalsIgnoreCase("svgz")) {
-        writeToSVGFile(
-          cgview,
-          filename,
-          embedFonts,
-          true,
-          nextZoomValue,
-          keepLastLabels
-        );
+        writeToSVGFile(cgview, filename, true, nextZoomValue, keepLastLabels);
       } else if (imageFormat.equalsIgnoreCase("png")) {
         writeToPNGFile(cgview, filename, keepLastLabels);
       } else if (imageFormat.equalsIgnoreCase("jpg")) {
@@ -1239,7 +1226,7 @@ public class CgviewIO implements CgviewConstants {
   public static void main(String args[]) {
     CmdLineParser parser = new CmdLineParser();
     CmdLineParser.Option help = parser.addBooleanOption("help");
-    CmdLineParser.Option version = parser.addBooleanOption("version");    
+    CmdLineParser.Option version = parser.addBooleanOption("version");
     CmdLineParser.Option labelFont = parser.addIntegerOption('A', "labelFont");
     CmdLineParser.Option centerBase = parser.addIntegerOption(
       'c',
@@ -1253,7 +1240,6 @@ public class CgviewIO implements CgviewConstants {
       'd',
       "tickDensity"
     );
-    CmdLineParser.Option embedFonts = parser.addStringOption('E', "embedFonts");
     CmdLineParser.Option excludeSVG = parser.addStringOption('e', "excludeSVG");
     CmdLineParser.Option format = parser.addStringOption('f', "formatOfOutput");
     CmdLineParser.Option html = parser.addStringOption('h', "htmlFile");
@@ -1307,13 +1293,12 @@ public class CgviewIO implements CgviewConstants {
     if (Boolean.TRUE.equals((Boolean) parser.getOptionValue(version))) {
       System.err.println(CGVIEW_VERSION);
       System.exit(0);
-    }    
+    }
 
     // Extract the values entered for the various options -- if the
     // options were not specified, the corresponding values will be
     // null.
     Integer centerBaseValue = (Integer) parser.getOptionValue(centerBase);
-    String embedFontsValueString = (String) parser.getOptionValue(embedFonts);
     String excludeSVGValueString = (String) parser.getOptionValue(excludeSVG);
     String formatValue = (String) parser.getOptionValue(format);
     String htmlValue = (String) parser.getOptionValue(html);
@@ -1400,17 +1385,6 @@ public class CgviewIO implements CgviewConstants {
       excludeSVGValue = new Boolean(true);
     } else {
       excludeSVGValue = new Boolean(false);
-    }
-
-    if (embedFontsValueString == null) {
-      embedFontsValue = new Boolean(true);
-    } else if (
-      (embedFontsValueString.equalsIgnoreCase("t")) ||
-      (embedFontsValueString.equalsIgnoreCase("true"))
-    ) {
-      embedFontsValue = new Boolean(true);
-    } else {
-      embedFontsValue = new Boolean(true);
     }
 
     if (useExternalStylesheetValueString == null) {
@@ -1613,11 +1587,7 @@ public class CgviewIO implements CgviewConstants {
 
       if (formatValue.equalsIgnoreCase("svg")) {
         try {
-          if (embedFontsValue.booleanValue() == false) {
-            writeToSVGFile(cgview, outputValue, false, false);
-          } else {
-            writeToSVGFile(cgview, outputValue, true, false);
-          }
+          writeToSVGFile(cgview, outputValue, false);
         } catch (SVGGraphics2DIOException e) {
           e.printStackTrace(System.err);
           System.err.println(PROBLEM_MESSAGE + e.toString());
@@ -1633,11 +1603,7 @@ public class CgviewIO implements CgviewConstants {
         }
       } else if (formatValue.equalsIgnoreCase("svgz")) {
         try {
-          if (embedFontsValue.booleanValue() == false) {
-            writeToSVGFile(cgview, outputValue, false, true);
-          } else {
-            writeToSVGFile(cgview, outputValue, true, true);
-          }
+          writeToSVGFile(cgview, outputValue, true);
         } catch (SVGGraphics2DIOException e) {
           e.printStackTrace(System.err);
           System.err.println(PROBLEM_MESSAGE + e.toString());
@@ -2183,7 +2149,6 @@ public class CgviewIO implements CgviewConstants {
               "." +
               "png",
               "png",
-              embedFontsValue.booleanValue(),
               zoomValues[k + 1]
             );
             // svgz
@@ -2200,7 +2165,6 @@ public class CgviewIO implements CgviewConstants {
                 "." +
                 "svgz",
                 "svgz",
-                embedFontsValue.booleanValue(),
                 zoomValues[k + 1],
                 true
               );
@@ -2219,7 +2183,6 @@ public class CgviewIO implements CgviewConstants {
               "." +
               "png",
               "png",
-              embedFontsValue.booleanValue(),
               0
             );
             // svgz
@@ -2236,7 +2199,6 @@ public class CgviewIO implements CgviewConstants {
                 "." +
                 "svgz",
                 "svgz",
-                embedFontsValue.booleanValue(),
                 0,
                 true
               );
