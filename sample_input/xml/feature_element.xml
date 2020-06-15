@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cgview backboneRadius="160" sequenceLength="1000" height="600" width="600" featureThickness="small">
+
+  <featureSlot strand="direct">
+    <feature color="red" decoration="clockwise-arrow" label="feature A">
+      <featureRange start="50" stop="100" />
+      <featureRange start="120" stop="150" />
+      <featureRange start="300" stop="350" />
+    </feature>
+    <feature color="blue" decoration="counterclockwise-arrow" label="feature B">
+      <featureRange start="390" stop="590" decoration="arc" label="feature X" proportionOfThickness="0.1" radiusAdjustment="0.5" />
+      <featureRange start="1" stop="40" />
+      <featureRange start="160" stop="250" />
+      <featureRange start="380" stop="450" showLabel="false" />
+      <featureRange start="460" stop="600" decoration="arc" showLabel="false" />
+    </feature>
+  </featureSlot>
+
+</cgview>

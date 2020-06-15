@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cgview backboneRadius="160" sequenceLength="1000" height="600" width="600">
+
+  <featureSlot strand="direct">
+    <feature color="green" decoration="clockwise-arrow" label="feature X">
+      <featureRange start="463" stop="622" />
+    </feature>
+  </featureSlot>
+
+  <legend font="Monospaced,plain,25" backgroundColor="black" position="upper-center" textAlignment="center">
+    <legendItem text="Created using CGView" fontColor="white" />
+  </legend>
+
+  <legend backgroundColor="navy" position="middle-right" backgroundOpacity="0.5">
+    <legendItem text="A legendItem" />
+    <legendItem text="A legendItem" drawSwatch="true" fontColor="white" swatchColor="green" />
+    <legendItem text="A legendItem" drawSwatch="true" fontColor="white" swatchColor="red" />
+    <legendItem text="A legendItem" drawSwatch="true" fontColor="white" swatchColor="yellow" />
+  </legend>
+
+  <legend font="SansSerif,italic,12" position="lower-left" fontColor="purple">
+    <legendItem text="legendItem aligned to the left" textAlignment="left" />
+    <legendItem text="the right" textAlignment="right" />
+    <legendItem text="the center" textAlignment="center" />
+  </legend>
+
+</cgview>

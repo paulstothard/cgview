@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cgview backboneRadius="160" sequenceLength="10000" backboneColor="green" height="600" width="600">
+
+  <featureSlot strand="direct">
+    <feature color="red" decoration="clockwise-arrow" label="feature X">
+      <featureRange start="4630" stop="4700" />
+    </feature>
+  </featureSlot>
+
+  <legend position="upper-center" font="SansSerif,bold-italic,40">
+    <legendItem text="Example map" textAlignment="center" />
+  </legend>
+
+</cgview>

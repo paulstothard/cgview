@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cgview backboneRadius="160" sequenceLength="50000" height="600" width="600">
+
+  <featureSlot strand="direct">
+    <feature color="green" decoration="clockwise-arrow" label="T7">
+      <featureRange start="21650" stop="21700" />
+    </feature>
+    <feature color="red" decoration="arc" label="SV40">
+      <featureRange start="40000" stop="40050" />
+    </feature>
+  </featureSlot>
+
+  <legend position="upper-center">
+    <legendItem text="A legend" font="Monospaced,plain,20" textAlignment="center" />
+  </legend>
+
+  <legend position="upper-right" font="SansSerif,plain,20">
+    <legendItem text="Promoter" drawSwatch="true" swatchColor="green" />
+    <legendItem text="Terminator" drawSwatch="true" swatchColor="red" />
+  </legend>
+
+  <legend position="lower-left">
+    <legendItem text="Another legend" font="Serif, bold, 20" fontColor="purple" />
+  </legend>
+
+  <legend position="lower-right">
+    <legendItem text="Created using CGView" font="SansSerif,bold-italic,20" />
+  </legend>
+
+</cgview>
