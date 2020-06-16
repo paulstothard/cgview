@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html lang="en">
+<head>
+<title>CGView - Application</title>
+<meta name="keywords" content="CGView" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="styles/stylesheet.css"  type="text/css" />
+</head>
+<body>
+
+
+<table class="main" border="0" cellspacing="6" cellpadding="2"> <!-- START MAIN TABLE -->
+<tbody>
+
+<tr> <!-- MAIN TABLE HEADER ROW -->
+    <td class="header">
+    <table class="header" width="100%" border="0" cellspacing="0" cellpadding="2"> <!-- START HEADER TABLE -->
+    <tbody>
+
+    <tr>
+    <td class="header_title" valign="middle">
+    <span class="title">CGView - Circular Genome Viewer</span><br />
+    <span class="subtitle">CGView Application</span><br />
+    </td>
+    </tr>
+
+    <tr>
+    <td class="link_bar" valign="middle">
+<a href="index.html">What is CGView?</a> | <a href="gallery.html">Gallery</a> | <a href="create_overview.html">Creating a Map</a> | <a href="application.html">CGView Application</a> | <a href="api_overview.html">CGView API</a> | <a href="http://stothard.afns.ualberta.ca/cgview_server/">CGView Server</a>
+    </td>
+    </tr>
+
+    </tbody>
+    </table> <!-- END HEADER TABLE -->
+    </td>
+</tr>
+
+<tr> <!-- MAIN TABLE CONTENT ROW -->
+
+
+<td class="content" align="center" valign="top">  <!-- MAIN TABLE MAIN COLUMN -->
+
+    <table class="content" border="0" cellspacing="4" cellpadding="2"> <!-- START CONTENT TABLE -->
+    <tbody>
+    <tr>  
+    <td>
+        <span class="subtitle">CGView Application</span><br />
+        The CGView application (cgview.jar) is available from <a href="https://github.com/paulstothard/cgview">https://github.com/paulstothard/cgview</a>. To generate a map using the application, create or obtain an input file for CGView. Two formats can be used: the <a href="xml_overview.html">CGView XML format</a> or the simpler <a href="tab_input.html">tab-delimited format</a>.<br /><br />
+
+        The <span class="bold">--help</span> and <span class="bold">--version</span> options can be used to view help and version information, respectively.<br /><br /> 
+
+        <span class="bold">Main CGView command line options</span><br />
+        <table class="content_a" width="100%" border="1" cellspacing="1" cellpadding="4"> 
+        <tbody>
+
+        <tr>
+        <td class="content_heading">
+        Option
+        </td>
+        <td class="content_heading">
+        Required?
+        </td>
+        <td class="content_heading">
+        Value
+        </td>
+        <td class="content_heading">
+        What does it do?
+        </td>
+        <td class="content_heading">
+        Example
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -c
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Base to center zoomed map on
+        </td>
+
+        <td>
+        When drawing a zoomed map this option is used to position the map canvas over the sequence. For example, a value of <span class="bold">100</span> centers the canvas on base 100 in the sequence. The default value for the <span class="bold">-c</span> option is <span class="bold">1</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.png -f png -z 100 -c 100
+        </td>
+        </tr>
+
+
+        <tr>
+        <td>
+        -f
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Output image format: <span class="bold">png</span>, <span class="bold">jpg</span>, <span class="bold">svg</span>, or <span class="bold">svgz</span>
+        </td>
+
+        <td>
+        Specifies the format of the output image. Default value is <span class="bold">png</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.jpg -f jpg
+        </td>
+        </tr>
+
+
+        <tr>
+        <td>
+        -h
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        HTML file to create
+        </td>
+
+        <td>
+        Specifies that an HTML file should be created to accompany the image file. The HTML file is needed for PNG and JPG maps that contain hyperlinks or mouseovers, as these are provided using image maps.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.png -f png -h output.html
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -i
+        </td>
+
+        <td>
+        Yes
+        </td>
+
+        <td>
+        Input file to parse
+        </td>
+
+        <td>
+        Specifies which file should serve as the input to CGView. The file extension should match the input type (<span class="bold">.xml</span> for CGView XML files, or <span class="bold">.tab</span> for the tab-delimited format.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i features.tab -o output.png
+        </td>
+        </tr>
+
+
+        <tr>
+        <td>
+        -o
+        </td>
+
+        <td>
+        Yes (unless <span class="bold">-s</span> option is used)
+        </td>
+
+        <td>
+        Output image file to create
+        </td>
+
+        <td>
+        Specifies the output image file to create. The format of the image is determined by the <span class="bold">-f</span> option, NOT by the extension of the output file.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i features.tab -o output.png
+        </td>
+        </tr>
+
+
+        <tr>
+        <td>
+        -s
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Directory to contain series of linked images
+        </td>
+
+        <td>
+        Specifies that a series of linked images should be created and written to the supplied directory. The values for <span class="bold">-c</span>, <span class="bold">-f</span>, <span class="bold">-h</span>, <span class="bold">-o</span>, <span class="bold">-p</span>, <span class="bold">-u</span>, and <span class="bold">-z</span> are ignored.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i features.xml -s image_series
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -z
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Zoom amount
+        </td>
+
+        <td>
+        Determines the zoom level of the map. Default value is <span class="bold">1</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i features.xml -o output.png -f png -z 10000
+        </td>
+        </tr>
+         
+        </tbody>
+        </table>
+
+    </td>
+    </tr>
+    <tr>
+    <td>        
+
+        <span class="bold">Advanced CGView command line options</span><br />
+        <table class="content_a" width="100%" border="1" cellspacing="1" cellpadding="4"> 
+        <tbody>
+
+        <tr>
+        <td class="content_heading">
+        Option
+        </td>
+        <td class="content_heading">
+        Required?
+        </td>
+        <td class="content_heading">
+        Value
+        </td>
+        <td class="content_heading">
+        What does it do?
+        </td>
+        <td class="content_heading">
+        Example
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -A
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Label font size
+        </td>
+
+        <td>
+        Specifies the label font size to use. This value overrides CGView's default label font size and label font size values specified in XML input.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -A 12
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -d
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Tick mark density
+        </td>
+
+        <td>
+        Adjusts the density of tick marks. A real number between 0 and 1 can be supplied, with 1 being the default value. Smaller values produce fewer tick marks. This value overrides CGView's default tick mark density and the tick mark density value specified in XML input.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -d 0.5
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -D
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Legend font size
+        </td>
+
+        <td>
+        Specifies the legend font size to use. This value overrides CGView's default legend font size and legend font size values specified in XML input.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -D 40
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -e
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        <span class="bold">T</span> or <span class="bold">F</span>
+        </td>
+
+        <td>
+        When drawing an image series, this option allows you to exclude the SVG output. By default this value is set to <span class="bold">F</span>, which specifies that the image series should consist of a combination of SVG and PNG output.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -s my_series -e T
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -H
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Map height
+        </td>
+
+        <td>
+        Specifies the height of the map. This value overrides the height value in the input file.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -H 1000
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -I
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        <span class="bold">T</span> or <span class="bold">F</span>
+        </td>
+
+        <td>
+        Specifies whether or not labels should be drawn on the inside of the backbone circle. Default is to draw inner labels when a zoomed map is drawn. This value overrides the value specified in the input file.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -I T
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -L
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        External legend width in pixels
+        </td>
+
+        <td>
+        When generating a series of linked images, you may want the legend to be separate from the map images, particularly if the legend contains many items. An external legend also allows you to customize the legend using logos or graphics. To generate a series of linked images with a separate legend image shown adjacent to the map, use the <span class="bold">-L</span> option to specify the width of the separate legend image. Once the linked map series has been generated, place a file called legend.png in the includes directory that is generated inside the output directory. When the map is rendered, the legend.png image is placed to the right of the map. This option can also be used when a single HTML file is generated using the <span class="bold">-h</span> option. In this case the HTML will expect a file called legend.png in the same directory as the HTML file.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -s my_series -e T -L 300
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -p
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Path to map image in HTML
+        </td>
+
+        <td>
+        Specifies the path to appear in the image tag when a single HTML file is generated using the <span class="bold">-h</span> option. By default the path is set to the value of the <span class="bold">-o</span> option.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.png -f png -h output.html -p /maps/images/output.png
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -r
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        <span class="bold">T</span> or <span class="bold">F</span>
+        </td>
+
+        <td>
+        Specifies whether or not legends should be hidden. Default value is <span class="bold">F</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.png -f png -r T
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -R
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        <span class="bold">T</span> or <span class="bold">F</span>
+        </td>
+
+        <td>
+        Specifies whether or not labels should be hidden. Default value is <span class="bold">F</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -o output.png -f png -R T
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -u
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        <span class="bold">T</span> or <span class="bold">F</span>      
+        </td>
+
+        <td>
+        Specifies whether or not to include calls to the overlib.js JavaScript library when generating an image series using the <span class="bold">-s</span> option. The overlib.js library provides mouseover labels for png and jpg image maps. This option can also be used when a single HTML file is generated using the <span class="bold">-h</span> option. In this case the HTML will expect a file called overlib.js in an includes directory (overlib.js is available in the CGView includes directory). Default value is <span class="bold">T</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -s image_series -u F
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -U
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Ruler font size
+        </td>
+
+        <td>
+        Specifies the ruler font size to use. This value overrides CGView's default ruler font size and ruler font size values specified in XML input.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -U 8
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -W
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Map width
+        </td>
+
+        <td>
+        Specifies the width of the map. This value overrides the width value in the input file.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -o output.png -W 1000
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        -x
+        </td>
+
+        <td>
+        No
+        </td>
+
+        <td>
+        Image series zoom values
+        </td>
+
+        <td>
+        Specifies the zoom values to be used when generating a series of linked maps using the <span class="bold">-s</span> option. The zoom values are supplied as a comma separated list, starting with the number 1. The default value is <span class="bold">1,6,36</span>.
+        </td>
+
+        <td>
+        java -jar cgview.jar -i input.xml -f png -s linked_series -x 1,6,36,216
+        </td>
+        </tr>
+         
+        </tbody>
+        </table>
+
+        <p>Tips:</p>
+        <ul>
+        <li>
+        If you obtain an <span class="bold">Out of Memory</span> error when drawing a very large map, try increasing the memory available to Java using the <span class="bold">-Xmx</span> option. For example, use the command <span class="bold">java -jar -Xmx500m cgview.jar -i input.xml -o output.png -f png</span>
+        </li>
+        <li>
+        When creating an XML file to generate a series of linked maps, specify <span class="bold">globalLabel=&quot;auto&quot;</span> in the <span class="bold">cgview</span> element for best results.
+        </li>
+        </ul>
+                
+    <span class="bold">Running CGView from a Java program:</span>
+    <p>See the <a href="api_overview.html">CGView API</a>.</p> 
+
+    <span class="bold">Citing CGView:</span><br />
+    <ul>
+    <li>
+    Stothard P, Wishart DS. Circular genome visualization and exploration
+using CGView. Bioinformatics 21:537-539.
+    </li>
+    </ul>
+
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END CONTENT TABLE -->
+
+</td>
+</tr>
+
+<tr> <!-- MAIN TABLE FOOTER ROW -->
+    <td class="footer">
+    <table class="footer" border="0" cellspacing="0" cellpadding="2"> <!-- START FOOTER TABLE -->
+    <tbody>
+    <tr>
+    <td valign="middle">
+    CGView was written by Paul Stothard. Contact: stothard@ualberta.ca
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END FOOTER TABLE -->
+    </td>
+</tr>
+
+<tr>
+<td>
+</td>
+</tr>
+
+</tbody>
+</table> <!-- END MAIN TABLE -->
+</body>
+</html>

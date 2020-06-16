@@ -1,0 +1,161 @@
+/* Paul Stothard 2003 */
+
+body {
+  background-color: #ffffff;
+  font-family: arial, sans-serif;
+  color: #000000;
+}
+
+table.main {
+  background-color: #ffffff;
+}
+
+td.header {
+  border: thin solid #000000;
+  background-color: #666666;
+}
+
+table.header {
+  background-color: #666666;
+  color: #ffffff;
+}
+
+td.header_title {
+  text-align: center;
+}
+
+td.link_bar {
+  background-color: #666666;
+  text-align: center;
+  font-size: small;
+}
+
+td.link_bar {
+  font-size: small;
+  color: #ffffff;
+  text-align: center;
+}
+td.link_bar a {
+  font-size: small;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+}
+td.link_bar a:visited {
+  font-size: small;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+}
+td.link_bar a:hover {
+  font-size: small;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: underline;
+}
+td.link_bar a:active {
+  font-size: small;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: underline;
+}
+
+td.content {
+  border: thin solid #000000;
+  background-color: #ffffff;
+  text-align: left;
+  font-size: small;
+}
+
+table.content_a {
+  background-color: #ffffff;
+}
+
+table.content_b {
+  background-color: #ffffff;
+}
+
+td.content_heading {
+  font-weight: bold;
+}
+
+p.code {
+  border: medium double #000000;
+  text-align: left;
+  white-space: pre;
+  padding: 0.5cm;
+}
+
+p.output {
+  text-align: center;
+}
+
+td.footer {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+  font-size: small;
+}
+
+table.footer {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+  font-size: small;
+}
+
+span.title {
+  font-size: xx-large;
+}
+
+span.subtitle {
+  font-size: large;
+}
+
+span.link_heading {
+  font-weight: bold;
+}
+
+span.element {
+  font-weight: bold;
+}
+
+span.bold {
+  font-weight: bold;
+}
+
+span.code_fragment {
+  font-weight: bold;
+}
+
+span.value_type {
+  font-style: italic;
+}
+
+span.warning {
+  color: #ff0000;
+}
+
+span.new {
+  color: #ff0000;
+}
+
+a:link {
+  color: #000099;
+  text-decoration: underline;
+} /* for unvisited links */
+
+a:visited {
+  color: #000099;
+  text-decoration: underline;
+} /* for visited links */
+
+a:active {
+  color: #ff0000;
+  text-decoration: none;
+} /* when link is clicked */
+
+a:hover {
+  color: #ff0000;
+  text-decoration: none;
+} /* when mouse is over link */

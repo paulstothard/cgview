@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html lang="en">
+<head>
+<title>CGView - XML</title>
+<meta name="keywords" content="CGView" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="styles/stylesheet.css"  type="text/css" />
+</head>
+<body>
+
+
+<table class="main" border="0" cellspacing="6" cellpadding="2"> <!-- START MAIN TABLE -->
+<tbody>
+
+<tr> <!-- MAIN TABLE HEADER ROW -->
+    <td class="header">
+    <table class="header" width="100%" border="0" cellspacing="0" cellpadding="2"> <!-- START HEADER TABLE -->
+    <tbody>
+
+    <tr>
+    <td class="header_title" valign="middle">
+    <span class="title">CGView - Circular Genome Viewer</span><br />
+    <span class="subtitle">CGView XML</span><br />
+    </td>
+    </tr>
+
+    <tr>
+    <td class="link_bar" valign="middle">
+<a href="index.html">What is CGView?</a> | <a href="gallery.html">Gallery</a> | <a href="create_overview.html">Creating a Map</a> | <a href="application.html">CGView Application</a> | <a href="api_overview.html">CGView API</a> | <a href="http://stothard.afns.ualberta.ca/cgview_server/">CGView Server</a>
+    </td>
+    </tr>
+
+    </tbody>
+    </table> <!-- END HEADER TABLE -->
+    </td>
+</tr>
+
+<tr> <!-- MAIN TABLE CONTENT ROW -->
+
+
+<td class="content" align="center" valign="top">  <!-- MAIN TABLE MAIN COLUMN -->
+
+    <table class="content" border="0" cellspacing="4" cellpadding="2"> <!-- START CONTENT TABLE -->
+    <tbody>
+    <tr>  
+    <td>
+        <span class="subtitle">CGView XML</span><br />
+        Input can be supplied to the CGView application as an XML (Extensible Markup Language) file. The various elements and attributes in the file are used to describe sequence features (position, type, name, color, label font, and opacity). Optional XML attributes can be included, to control global map characteristics, and to add legends, a title, and footnotes. Once an XML input file is generated, it can be used to create a single map showing the entire sequence, or an expanded view of a particular region. The same input file can also be used to generate a collection of linked images. The linked images allow a genome to be visualized at varying levels of detail, using only a web browser. Because the linked images are pre-rendered, no special software is required to serve the images, or to view them. For more information see <a href="create_overview.html">creating CGView maps</a>.<br /><br />
+        Generally the feature information you will want to display will reside in a relational database or a flat file, or some combination of the two. You will need to convert the feature information into an XML file for CGView.<br /><br />
+        There are six different XML elements in a CGView XML document. Use the links below to view additional information, including lists of the required and optional attributes.<br />
+        <ul>
+        <li>
+        <a href="xml_cgview.html">cgview</a> - the root element. It has attributes that control the overall appearance of the map (width, height, background color, etc).
+        </li>
+        <li>
+        <a href="xml_featureSlot.html">featureSlot</a> - represents a ring of space for features.
+        </li>
+        <li>
+        <a href="xml_feature.html">feature</a> - used to represent a sequence feature, such as a promoter, or an open reading frame.   
+        </li>
+        <li>
+        <a href="xml_featureRange.html">featureRange</a> - indicates which bases in the sequence should be marked with features.
+        </li>
+        <li>
+        <a href="xml_legend.html">legend</a> - can be used to add text to the map, such as legends, titles, and comments.
+        </li>
+        <li>
+        <a href="xml_legendItem.html">legendItem</a> - used to represent a single line of text in a legend.
+        </li>
+        </ul>
+
+        The following sample CGView document shows the how the elements are typically arranged. It describes a map with two featureSlots (each containing a single feature) and a legend containing two entries.
+        <p class="code">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;cgview backboneRadius=&quot;160&quot; sequenceLength=&quot;10000&quot; height=&quot;600&quot; width=&quot;600&quot;&gt;
+
+  &lt;featureSlot strand=&quot;direct&quot;&gt;
+    &lt;feature color=&quot;green&quot; decoration=&quot;clockwise-arrow&quot; label=&quot;a promoter&quot;&gt;
+      &lt;featureRange start=&quot;500&quot; stop=&quot;900&quot; /&gt;
+    &lt;/feature&gt;
+  &lt;/featureSlot&gt;
+
+  &lt;featureSlot strand=&quot;reverse&quot;&gt;
+    &lt;feature color=&quot;red&quot; decoration=&quot;arc&quot; label=&quot;a terminator&quot;&gt;
+      &lt;featureRange start=&quot;8500&quot; stop=&quot;8800&quot; /&gt;
+    &lt;/feature&gt;
+  &lt;/featureSlot&gt;
+
+  &lt;legend position=&quot;upper-right&quot;&gt;     
+    &lt;legendItem text=&quot;Promoter&quot; drawSwatch=&quot;true&quot; swatchColor=&quot;green&quot; /&gt;
+    &lt;legendItem text=&quot;Terminator&quot; drawSwatch=&quot;true&quot; swatchColor=&quot;red&quot; /&gt;
+  &lt;/legend&gt;
+    
+&lt;/cgview&gt;
+        </p>
+        
+        This is the map generated by the above document:<br />
+
+        <p class="output">
+        <img src="images/overview.svg" alt="output of above document" />
+        </p>
+
+        <span class="bold">Note:</span> When generating XML for CGView, some characters must be escaped, otherwise they will confuse the XML parser. Consider the hyperlink attribute of the <span class="element">feature</span> element. This attribute can be used to supply a URL for CGView to incorporate into its output, so that clicking on the feature label in the final map can redirect the user to a relevant resource. If any of the following characters appear in the URL, or any other value that will be supplied to an attribute for that matter, they must be escaped:<br /><br />
+
+        <span class="bold">Special XML characters</span><br />
+        <table class="content_a" width="100%" border="1" cellspacing="1" cellpadding="4"> 
+        <tbody>
+
+        <tr>
+        <td class="content_heading">
+        Character
+        </td>
+        <td class="content_heading">
+        Name
+        </td>
+        <td class="content_heading">
+        Escaped version
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        &amp;
+        </td>
+        <td>
+        ampersand
+        </td>
+        <td>
+        &amp;amp;
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        '
+        </td>
+        <td>
+        single quote
+        </td>
+        <td>
+        &amp;apos;
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        &quot;
+        </td>
+        <td>
+        double quote
+        </td>
+        <td>
+        &amp;quot;
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        &lt;
+        </td>
+        <td>
+        less than
+        </td>
+        <td>
+        &amp;lt;
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+        &gt;
+        </td>
+        <td>
+        greater than
+        </td>
+        <td>
+        &amp;gt;
+        </td>
+        </tr>
+         
+        </tbody>
+        </table>
+
+        <br />
+        <span class="bold">Citing CGView:</span><br />
+        <ul>
+        <li>
+        Stothard P, Wishart DS. Circular genome visualization and exploration
+using CGView. Bioinformatics 21:537-539.
+        </li>
+        </ul>
+
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END CONTENT TABLE -->
+
+</td>
+</tr>
+
+<tr> <!-- MAIN TABLE FOOTER ROW -->
+    <td class="footer">
+    <table class="footer" border="0" cellspacing="0" cellpadding="2"> <!-- START FOOTER TABLE -->
+    <tbody>
+    <tr>
+    <td valign="middle">
+    CGView was written by Paul Stothard. Contact: stothard@ualberta.ca
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END FOOTER TABLE -->
+    </td>
+</tr>
+
+<tr>
+<td>
+</td>
+</tr>
+
+</tbody>
+</table> <!-- END MAIN TABLE -->
+</body>
+</html>

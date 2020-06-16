@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html lang="en">
+<head>
+<title>CGView - Tab-delimited input</title>
+<meta name="keywords" content="CGView" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="styles/stylesheet.css"  type="text/css" />
+</head>
+<body>
+
+
+<table class="main" border="0" cellspacing="6" cellpadding="2"> <!-- START MAIN TABLE -->
+<tbody>
+
+<tr> <!-- MAIN TABLE HEADER ROW -->
+    <td class="header">
+    <table class="header" width="100%" border="0" cellspacing="0" cellpadding="2"> <!-- START HEADER TABLE -->
+    <tbody>
+
+    <tr>
+    <td class="header_title" valign="middle">
+    <span class="title">CGView - Circular Genome Viewer</span><br />
+    <span class="subtitle">CGView Tab-Delimited Input</span><br />
+    </td>
+    </tr>
+
+    <tr>
+    <td class="link_bar" valign="middle">
+<a href="index.html">What is CGView?</a> | <a href="gallery.html">Gallery</a> | <a href="create_overview.html">Creating a Map</a> | <a href="application.html">CGView Application</a> | <a href="api_overview.html">CGView API</a> | <a href="http://stothard.afns.ualberta.ca/cgview_server/">CGView Server</a>
+    </td>
+    </tr>
+
+    </tbody>
+    </table> <!-- END HEADER TABLE -->
+    </td>
+</tr>
+
+<tr> <!-- MAIN TABLE CONTENT ROW -->
+
+
+<td class="content" align="center" valign="top">  <!-- MAIN TABLE MAIN COLUMN -->
+
+    <table class="content" border="0" cellspacing="4" cellpadding="2"> <!-- START CONTENT TABLE -->
+    <tbody>
+    <tr>  
+    <td>
+        <span class="subtitle">Tab-Delimited Input</span><br />
+        The CGView <a href="application.html">application</a> can read feature information from a tab-delimited file consisting of the following lines:<br />
+        <ul>
+        <li>
+        The <span class="bold">#</span> character followed by the name of the sequence. Optional.
+        </li>
+        <li>
+        The <span class="bold">%</span> character followed by the length of the sequence. Required.
+        </li>
+        <li>
+        The <span class="bold">!</span> character followed by tab-separated names of the columns in your data file. Required.
+        </li>
+        <li>
+        The tab-separated feature data in the same order as the named columns. Required.
+        </li>
+        </ul>
+
+        The following column names and values are required:<br />
+        <ul>
+        <li>
+        <span class="bold">strand</span> - whether the feature is on the <span class="bold">forward</span> or <span class="bold">reverse</span> strand.
+        </li>
+        <li>
+        <span class="bold">slot</span> - an integer between 1 and 6 indicating which of the concentric feature rings should hold the feature.
+        </li>
+        <li>
+        <span class="bold">start</span> - an integer between 1 and the length of the sequence.
+        </li>
+        <li>
+        <span class="bold">stop</span> - an integer between 1 and the length of the sequence. The stop value should be greater than or equal to the start value regardless of the strand, unless the feature crosses the sequence start/end boundary.
+        </li>
+        <li>
+        <span class="bold">type</span> - text indicating the type of feature. The following types are recognized: <span class="bold">origin_of_replication</span>, <span class="bold">promoter</span>, <span class="bold">terminator</span>, <span class="bold">regulatory_sequence</span>, <span class="bold">unique_restriction_site</span>, <span class="bold">restriction_site</span>, <span class="bold">open_reading_frame</span>, <span class="bold">gene</span>, <span class="bold">predicted_gene</span>, <span class="bold">sequence_similarity</span>, <span class="bold">score</span>, <span class="bold">score_II</span>, <span class="bold">primer</span>, and <span class="bold">misc</span>. The feature type determines how the feature is colored, and whether it is drawn as an arrow or an arc.
+        </li>
+        </ul>
+
+        The following column names and values are optional:<br />
+        <ul>
+        <li>
+        <span class="bold">opacity</span> - a real number between 0 and 1 indicating the opacity of the feature, with 1 being completely opaque. The default value is 1.
+        </li>
+        <li>
+        <span class="bold">thickness</span> - a real number between 0 and 1 indicating what proportion of the slot thickness is occupied by the feature, with 1 being all the thickness. The default value is 1.
+        </li>
+        <li>
+        <span class="bold">radius</span> - a real number between 0 and 1 indicating where in the slot the feature should be placed, with 1 being at the edge of the slot furthest from the center of the backbone circle. This value only has an effect when the thickness attribute is set to a value less than 1. Default value is 0.
+        </li>
+        <li>
+        <span class="bold">label</span> - a text label for the feature. Shorter labels are better, because they are more likely to fit on the canvas.
+        </li>
+        <li>
+        <span class="bold">mouseover</span> - text to appear when the mouse pointer is placed over the feature label.
+        </li>
+        <li>
+        <span class="bold">hyperlink</span> - a URL to access when the feature label is clicked.
+        </li>
+        </ul>
+
+        If you include optional columns in your data file, any missing values under the optional columns should be marked using a dash (<span class="bold">-</span>) character. Multiple tabs can be used to separate values. However, the order of the values must match the order of the column names.<br /><br />
+
+        Example input files are available at <a href="https://github.com/paulstothard/cgview/tree/master/sample_input/tab">here</a>.<br /><br />
+
+        This is the map generated by example_1.tab (note that the <span class="bold">-R T</span> option would typically be used with <span class="bold">cgview.jar</span> to remove labels for a map of this size):<br />
+
+        <p class="output">
+        <img src="images/example_1.svg" alt="output of example_1.tab" />
+        </p>
+
+        This is the map generated by example_2.tab:<br />
+
+        <p class="output">
+        <img src="images/example_2.svg" alt="output of example_2.tab" />
+        </p>
+
+        This is the map generated by example_3.tab:<br />
+
+        <p class="output">
+        <img src="images/example_3.svg" alt="output of example_3.tab" />
+        </p>
+
+        <span class="bold">Citing CGView:</span><br />
+        <ul>
+        <li>
+        Stothard P, Wishart DS. Circular genome visualization and exploration
+using CGView. Bioinformatics 21:537-539.
+        </li>
+        </ul>
+        
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END CONTENT TABLE -->
+
+</td>
+</tr>
+
+<tr> <!-- MAIN TABLE FOOTER ROW -->
+    <td class="footer">
+    <table class="footer" border="0" cellspacing="0" cellpadding="2"> <!-- START FOOTER TABLE -->
+    <tbody>
+    <tr>
+    <td valign="middle">
+    CGView was written by Paul Stothard. Contact: stothard@ualberta.ca
+    </td>
+    </tr>
+    </tbody>
+    </table> <!-- END FOOTER TABLE -->
+    </td>
+</tr>
+
+<tr>
+<td>
+</td>
+</tr>
+
+</tbody>
+</table> <!-- END MAIN TABLE -->
+</body>
+</html>
