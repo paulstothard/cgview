@@ -48,7 +48,7 @@ public class CgviewIO implements CgviewConstants {
 
   private static Double tickDensityValue;
 
-  private static final String CGVIEW_VERSION = "CGView 2.0.0 2020-06-14";
+  private static final String CGVIEW_VERSION = "CGView 2.0.1 2020-06-16";
 
   private static final String PROBLEM_MESSAGE =
     "The following error occurred: ";
