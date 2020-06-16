@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cgview backboneRadius="160" sequenceLength="10000" height="600" width="600">
+
+  <featureSlot strand="direct">
+    <feature color="green" decoration="clockwise-arrow" label="a promoter">
+      <featureRange start="500" stop="900" />
+    </feature>
+  </featureSlot>
+
+  <featureSlot strand="reverse">
+    <feature color="red" decoration="arc" label="a terminator">
+      <featureRange start="8500" stop="8800" />
+    </feature>
+  </featureSlot>
+
+  <legend position="upper-right">     
+    <legendItem text="Promoter" drawSwatch="true" swatchColor="green" />
+    <legendItem text="Terminator" drawSwatch="true" swatchColor="red" />
+  </legend>
+    
+</cgview>
