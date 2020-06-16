@@ -108,13 +108,12 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("   usage:");
     System.err.println("");
     System.err.println(
-      "      java -jar cgview.jar -i <file> -f <format> -o <file> [Options]"
+      "      java -jar cgview.jar -i <file> -o <file> [Options]"
     );
     System.err.println("");
     System.err.println("   required arguments:");
     System.err.println("");
     System.err.println("      -i  Input file in CGView XML or TAB format.");
-    System.err.println("      -f  Output file format: png, jpg, svg, or svgz.");
     System.err.println("      -o  Output file to create.");
     System.err.println("");
     System.err.println(
@@ -129,6 +128,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println(
       "      -d  Density of tick marks, between 0 and 1.0 (default 1.0)."
     );
+    System.err.println("      -f  Output file format: png, jpg, svg, or svgz.");
     System.err.println("      -H  Height of map (default 700).");
     System.err.println(
       "      -h  HTML file to create for image map functionality."

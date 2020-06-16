@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.regex.*;
 
 /**
- * This class reads a tab delimited feature file and creates a Cgview object.
+ * This class reads a tab-delimited feature file and creates a Cgview object.
  *
  * @author Paul Stothard
  */
@@ -111,7 +111,7 @@ public class CgviewFactoryPtt implements CgviewConstants {
   }
 
   /**
-   * Generates a Cgview object from an tab delimited feature file.
+   * Generates a Cgview object from an tab-delimited feature file.
    *
    * @param filename the file to read.
    * @return the newly created Cgview object.
@@ -127,9 +127,9 @@ public class CgviewFactoryPtt implements CgviewConstants {
   }
 
   /**
-   * Generates a Cgview object from an tab delimited feature file.
+   * Generates a Cgview object from an tab-delimited feature file.
    *
-   * @param url the URL of the tab delimited file to read.
+   * @param url the URL of the tab-delimited file to read.
    * @return the newly created Cgview object.
    * @throws Exception
    * @throws IOException
