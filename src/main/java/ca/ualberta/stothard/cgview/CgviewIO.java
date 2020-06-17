@@ -163,7 +163,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -R  Remove feature labels, T or F (default F).");
     System.err.println("      -U  Font size for sequence ruler (default 8).");
     System.err.println(
-      "      -u  Include overlip.js calls for mouseover labels for png and jpg image maps in html output, T or F (default T)."
+      "      -u  Include overlib.js calls for mouseover labels for png and jpg image maps in html output, T or F (default T)."
     );
     System.err.println("      -W  Width of map (default 700).");
     System.err.println("      -z  Zoom multiplier (default 1).");
@@ -206,7 +206,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -r  Remove legends, T or F (default F).");
     System.err.println("      -U  Font size for sequence ruler (default 8).");
     System.err.println(
-      "      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
+      "      -u  Include overlib.js for mouseover labels for png and jpg image maps in html output, T or F (default T)."
     );
     System.err.println("      -W  Width of map (default 700).");
     System.err.println(
@@ -216,7 +216,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("   example usage:");
     System.err.println("");
     System.err.println(
-      "      java -jar cgview.jar -i test.xml -o image_series"
+      "      java -jar cgview.jar -i test.xml -s image_series"
     );
   }
 

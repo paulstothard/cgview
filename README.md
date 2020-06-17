@@ -123,7 +123,7 @@ CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
       -L  Width of user-supplied legend png file (legend.png) to be referenced in html output.
       -r  Remove legends, T or F (default F).
       -U  Font size for sequence ruler (default 8).
-      -u  Include overlip.js for mouseover labels for png and jpg image maps in html output, T or F (default T).
+      -u  Include overlib.js for mouseover labels for png and jpg image maps in html output, T or F (default T).
       -W  Width of map (default 700).
       -x  Zoom multipliers to use, comma-separated (default is 1,6,36).
 
