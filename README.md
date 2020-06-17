@@ -1,4 +1,5 @@
-![CGView map](sample.png)
+![CGView map](sample1.png) ![CGView map](sample2.png)
+
 
 # CGView
 CGView is a Java package for generating high quality, zoomable maps of circular genomes. Its primary purpose is to serve as a component of sequence annotation pipelines, and as a means of generating visual output suitable for the web.
