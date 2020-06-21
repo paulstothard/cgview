@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cgview=cgview.jar
+cgview=../../target/cgview.jar
 
 if [ ! -d ./test_output ]; then
     mkdir ./test_output
