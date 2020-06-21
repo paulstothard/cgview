@@ -1507,6 +1507,10 @@ public class CgviewIO implements CgviewConstants {
           e.printStackTrace(System.err);
           System.err.println(PROBLEM_MESSAGE + e.toString());
           System.exit(1);
+        } catch (Exception e) {
+          e.printStackTrace(System.err);
+          System.err.println(PROBLEM_MESSAGE + e.toString());
+          System.exit(1);
         }
       } else if (inputFormat.equalsIgnoreCase("tab")) {
         try {
@@ -1792,6 +1796,10 @@ public class CgviewIO implements CgviewConstants {
           System.err.println(PROBLEM_MESSAGE + e.toString());
           System.exit(1);
         } catch (IOException e) {
+          e.printStackTrace(System.err);
+          System.err.println(PROBLEM_MESSAGE + e.toString());
+          System.exit(1);
+        } catch (Exception e) {
           e.printStackTrace(System.err);
           System.err.println(PROBLEM_MESSAGE + e.toString());
           System.exit(1);

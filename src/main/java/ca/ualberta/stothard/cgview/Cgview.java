@@ -3405,6 +3405,21 @@ public class Cgview implements CgviewConstants {
       strandDirection = -1;
     }
 
+    // don't draw REVERSE_STRAND ticks if there isn't much space
+    if (this.getLastInnerFeatureRadius() - 0.5d * tickThickness < 100.0d) {
+      if (strand == REVERSE_STRAND) {
+        System.out.println(
+          "[warning] tick marks were not drawn on the inside of the backbone due to insufficient space.");
+        return;
+      }
+    }
+
+    // added 20200620 to avoid issues from this.getLastInnerFeatureRadius() being negative
+    double pseudoGetLastInnerFeatureRadius = this.getLastInnerFeatureRadius();
+    if (pseudoGetLastInnerFeatureRadius < 100.0d) {
+      pseudoGetLastInnerFeatureRadius = 100.0d;
+    } 
+
     // determine the base intervals for ticks.
     // may need to be reduced if there are not enough ticks or increased if there are too many ticks
     approxBasesPerTick =
@@ -3414,13 +3429,13 @@ public class Cgview implements CgviewConstants {
         (
           (
             virtualBackboneRadius -
-            (backboneRadius - this.getLastInnerFeatureRadius())
+            (backboneRadius - pseudoGetLastInnerFeatureRadius)
           ) /
           200.0d
         ) *
         tickDensity
       );
-
+    System.out.println("approxBasesPerTick is " + approxBasesPerTick + ".");
     if (rulerUnits == BASES) {
       for (int i = 0; i < goodTicks.length; i++) {
         if (
@@ -3434,8 +3449,6 @@ public class Cgview implements CgviewConstants {
       }
     } else if (rulerUnits == CENTISOMES) {
       for (int i = 0; i < goodCentisomeTickNumbers.length; i++) {
-        // if ((((double) (desiredNumberOfTicks) * (virtualBackboneRadius / 200.0d)) <
-        // goodCentisomeTickNumbers[i]) || (i == (goodCentisomeTickNumbers.length - 1))) {
         if (
           (
             (
@@ -3443,7 +3456,7 @@ public class Cgview implements CgviewConstants {
               (
                 (
                   virtualBackboneRadius -
-                  (backboneRadius - this.getLastInnerFeatureRadius())
+                  (backboneRadius - pseudoGetLastInnerFeatureRadius)
                 ) /
                 200.0d
               ) *
@@ -4598,26 +4611,6 @@ public class Cgview implements CgviewConstants {
                 }
               }
             }
-            // this wass a bug. with the code below lots of inner labels were not being drawn. new
-            // code above
-            //                         if (!(innerArc.contains(currentLabel.getBounds())) ||
-            // !(backgroundRectangle.contains(currentLabel.getBounds())) ||
-            // !(backgroundRectangle.contains(currentLabel.getLineStart()))) {
-            //                             if (!currentLabel.getForceLabel()) {
-            //                                 if ((!moveInnerLabelsToOuter) || (currentLabel
-            // instanceof OuterLabel)) {
-            //                                     labels.remove(j);
-            //                                     clashLabels++;
-            //                                     j = j - 1;
-            //                                 } else {
-            //                                     //convert innerLabel to an outerLabel
-            //                                     new OuterLabel((InnerLabel) currentLabel);
-            //                                     labels.remove(j);
-            //                                     j = j - 1;
-            //                                 }
-            //                             }
-            //                         }
-
           }
         }
       }
