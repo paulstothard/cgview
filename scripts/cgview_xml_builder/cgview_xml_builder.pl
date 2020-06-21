@@ -1,7 +1,7 @@
 #FILE: cgview_xml_builder.pl
-#AUTH: Paul Stothard (paul.stothard@gmail.com)
-#DATE: June 18, 2011
-#VERS: 1.2
+#AUTH: Paul Stothard <stothard@ualberta.ca>
+#DATE: June 21, 2020
+#VERS: 1.5
 
 use strict;
 use warnings;
@@ -5485,8 +5485,8 @@ Default is to let program choose step value. Optional.
 
 map appearance arguments:
 
--size - The size of the map. [small/medium/large/x-large]. Default is medium.
-Optional.
+-size - The size of the map. [small/medium/large/large-v2/x-large]. Default is
+medium. large-v2 is recommended for most figures for publication. Optional.
 
 -linear - Whether this genome is linear. Linear genomes are drawn as a circle
 with a line drawn between the start and end of the sequence. [T/F]. Default is

@@ -2,34 +2,29 @@
 
 FILE: cgview\_xml\_builder.pl  
 AUTH: Paul Stothard <stothard@ualberta.ca>  
-DATE: Jan 22, 2010.  
-VERS: 1.1.  
+DATE: June 21, 2020  
+VERS: 1.5  
 
 This script accepts a variety of input files pertaining to circular genomes and generates an XML file for the [CGView genome drawing program](https://github.com/paulstothard/cgview). There are several command line options for specifying which input files should be used, and for controlling which features should be drawn.
 
-This script requires the `Tie::IxHash` Perl module, which can be installed as follows using CPAN:
+This script requires the `Tie::IxHash`, `Bio::SeqIO`, and `Bio::SeqUtils` Perl modules. These can also be installed using CPAN, e.g.:
 
 ```
-perl -MCPAN -e "install Tie::IxHash"
-```
-
-This script requires the `Bio::SeqIO` and `Bio::SeqUtils` Perl modules from the [BioPerl project](https://github.com/bioperl/bioperl-live/blob/master/README.md). These can also be installed using CPAN:
-
-```
-perl -MCPAN -e "install Bio::SeqIO"
-perl -MCPAN -e "install Bio::SeqUtils"
+sudo perl -MCPAN -e "install Tie::IxHash"
+sudo perl -MCPAN -e "install Bio::SeqIO"
+sudo perl -MCPAN -e "install Bio::SeqUtils"
 ```
 
 ## Creating a map using cgview\_xml\_builder.pl and cgview.jar
 
-Create an XML file from a GenBank file using cgview\_xml\_builder.pl:
+Create an XML file from a GenBank file using `cgview_xml_builder.pl`:
 
 ```bash
 perl cgview_xml_builder.pl -sequence sample_input/R_denitrificans.gbk \
 -output R_denitrificans.xml -tick_density 0.7
 ```
 
-Convert the XML file to a graphical map using cgview.jar:
+Convert the XML file to a graphical map using `cgview.jar`:
 
 ```bash
 java -jar -Xmx1500m cgview.jar -i R_denitrificans.xml \
