@@ -9,9 +9,16 @@ This script accepts a variety of input files pertaining to circular genomes and 
 
 This script requires the `Tie::IxHash` Perl module, which can be installed as follows using CPAN:
 
-`perl -MCPAN -e "install Tie::IxHash"`
+```
+perl -MCPAN -e "install Tie::IxHash"
+```
 
-This script requires the `Bio::SeqIO` Perl module from the BioPerl project. Installation instructions are available [here](https://github.com/bioperl/bioperl-live/blob/master/README.md).
+This script requires the `Bio::SeqIO` and `Bio::SeqUtils` Perl modules from the [BioPerl project](https://github.com/bioperl/bioperl-live/blob/master/README.md). These can also be installed using CPAN:
+
+```
+perl -MCPAN -e "install Bio::SeqIO"
+perl -MCPAN -e "install Bio::SeqUtils"
+```
 
 ## Creating a map using cgview\_xml\_builder.pl and cgview.jar
 
@@ -126,8 +133,8 @@ Default is to let program choose step value. Optional.
 
 map appearance arguments:
 
--size - The size of the map. [small/medium/large/x-large]. Default is medium.
-Optional.
+-size - The size of the map. [small/medium/large/large-v2/x-large]. Default is
+medium. large-v2 is recommended for most figures for publication. Optional.
 
 -linear - Whether this genome is linear. Linear genomes are drawn as a circle
 with a line drawn between the start and end of the sequence. [T/F]. Default is

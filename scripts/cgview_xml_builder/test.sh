@@ -6,6 +6,14 @@ if [ ! -d ./test_output ]; then
     mkdir ./test_output
 fi
 
+#test contig merging and new size setting large-v2
+perl cgview_xml_builder.pl -sequence test_input/prokka_multicontig.gbk \
+-gc_content T -gc_skew T -size large-v2 \
+-output test_output/prokka_multicontig.xml
+
+java -jar -Xmx2000m $cgview -i test_output/prokka_multicontig.xml \
+-o test_output/prokka_multicontig.png -f png
+
 for size in small medium large x-large; do
     #simple
     perl cgview_xml_builder.pl -sequence test_input/R_denitrificans.gbk \

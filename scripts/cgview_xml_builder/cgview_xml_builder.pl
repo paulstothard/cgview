@@ -6,6 +6,7 @@
 use strict;
 use warnings;
 use Bio::SeqIO;
+use Bio::SeqUtils;
 use Getopt::Long qw(:config pass_through);
 use Data::Dumper;
 use Tie::IxHash;
@@ -203,9 +204,9 @@ my %settings = (
 my %global = (
     orfCount => 0,
     ncbiGiLink =>
-"http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Text\&amp;db=Protein\&amp;dopt=genpept\&amp;dispmax=20\&amp;uid=",
+"https://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Text\&amp;db=Protein\&amp;dopt=genpept\&amp;dispmax=20\&amp;uid=",
     ncbiGeneLink =>
-"http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=gene\&amp;cmd=Retrieve\&amp;dopt=Graphics\&amp;list_uids=",
+"https://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=gene\&amp;cmd=Retrieve\&amp;dopt=Graphics\&amp;list_uids=",
     format    => undef,
     length    => undef,
     accession => undef,
@@ -365,6 +366,11 @@ if ( $options{cct} == 1 ) {
         $options{legend}         = 'T';
     }
     elsif ( $options{size} eq 'large' ) {
+        $options{global_label}   = 'auto';
+        $options{feature_labels} = 'F';
+        $options{legend}         = 'T';
+    }
+    elsif ( $options{size} eq 'large-v2' ) {
         $options{global_label}   = 'auto';
         $options{feature_labels} = 'F';
         $options{legend}         = 'T';
@@ -609,6 +615,15 @@ if ( !( defined( $options{step} ) ) ) {
     }
 
     if ( $options{size} eq 'large' ) {
+        if ( $options{step} == 10 ) {
+            $options{step} = 5;
+        }
+        elsif ( $options{step} == 100 ) {
+            $options{step} = 50;
+        }
+    }
+
+    if ( $options{size} eq 'large-v2' ) {
         if ( $options{step} == 10 ) {
             $options{step} = 5;
         }
@@ -1040,7 +1055,7 @@ _message( \%options, "CGView XML file complete." );
 _message( \%options, "The recommended CGView command is:" );
 _message( \%options, "----------------------------------" );
 _message( \%options,
-    "java -jar -Xmx1500m ../cgview.jar -i $options{output} -o map.png -f png" );
+    "java -jar -Xmx1500m cgview.jar -i $options{output} -o map.png" );
 _message( \%options, "Success!" );
 
 #write information about settings used so that users can modify using -custom option
@@ -1279,8 +1294,53 @@ sub _adjustSettingsBasedOnSize {
         $settings->{minimumFeatureLength}  = "0.2";
         $settings->{tickLength}            = "25";
         $settings->{labelPlacementQuality} = "better";
+        $options->{tick_density}           = $options->{tick_density} / 9.0;
+    }
+    elsif ( $options->{size} eq "large-v2" ) {
+        $settings->{width}                 = "10000";
+        $settings->{height}                = "10000";
+        $settings->{featureSlotSpacing}    = "10";
+        $settings->{backboneRadius}        = "4000";
+        $settings->{backboneThickness}     = "40";
+        $settings->{featureThickness}      = "220";
+        $settings->{featureThicknessPlot}  = "700";
+        $settings->{rulerFontSize}         = "130";
+        $settings->{titleFontSize}         = "100";
+        $settings->{labelFontSize}         = "130";
+        $settings->{legendFontSize}        = "110";
+        $settings->{maxTitleLength}        = "90";
+        $settings->{maxLabelLength}        = "20";
+        $settings->{maxLegendLength}       = "30";
+        $settings->{plotLineThickness}     = "0.02";
+        $settings->{labelLineLength}       = "450";
+        $settings->{labelLineThickness}    = "12";
+        $settings->{rulerPadding}          = "130";
+        $settings->{tickThickness}         = "18";
+        $settings->{arrowheadLength}       = "60";
+        $settings->{minimumFeatureLength}  = "1.0";
+        $settings->{tickLength}            = "45";
+        $settings->{labelPlacementQuality} = "better";
+        $settings->{isLinear}              = "false";
+        $settings->{featureOpacity}        = "0.9";
+        $settings->{featureOpacityOther}   = "0.9";
+        $settings->{showBorder}            = "false";
+        $global->{topology}                = "circular";
+        $options->{tick_density}           = "0.05";
+        $options->{draw_divider_rings}     = "T";
 
-        $options->{tick_density} = $options->{tick_density} / 9.0;
+        $settings->{proteinColor}   = "rgb(55,126,184)";
+        $settings->{tRNAColor}      = "rgb(228,26,28)";
+        $settings->{rRNAColor}      = "rgb(204,204,0)";
+        $settings->{otherColor}     = "rgb(153,153,153)";
+        $settings->{orfColor}       = "rgb(255,127,1)";
+        $settings->{gcColorPos}     = "rgb(166,86,40)";
+        $settings->{gcColorNeg}     = "rgb(166,86,40)";
+        $settings->{gcSkewColorPos} = "rgb(255,51,255)";
+        $settings->{gcSkewColorNeg} = "rgb(153,51,255)";
+        $settings->{backboneColor}  = "rgb(102,102,102)";
+        $settings->{rulerFontColor} = "rgb(0,0,0)";
+        $settings->{tickColor}      = "rgb(0,51,0)";
+        $settings->{rulerFontColor} = "rgb(0,0,0)";
     }
     elsif ( $options->{size} eq "x-large" ) {
         $settings->{width}                 = "12000";
@@ -1305,8 +1365,7 @@ sub _adjustSettingsBasedOnSize {
         $settings->{minimumFeatureLength}  = "0.2";
         $settings->{tickLength}            = "20";
         $settings->{labelPlacementQuality} = "better";
-
-        $options->{tick_density} = $options->{tick_density} / 12.0;
+        $options->{tick_density}           = $options->{tick_density} / 12.0;
     }
     else {
         _message( $options, "-size setting $options->{size} not recognized." );
@@ -1757,9 +1816,17 @@ sub _getSeqObject {
         -format => $param->{global}->{format},
         -file   => $file
     );
-    my $seq = $in->next_seq();
 
-    return $seq;
+    my @seqs = ();
+
+    while ( my $seq = $in->next_seq() ) {
+        push( @seqs, $seq );
+    }
+
+    #merge multi-contig sequences
+    Bio::SeqUtils->cat(@seqs);
+
+    return $seqs[0];
 
 }
 
@@ -1769,7 +1836,7 @@ sub _writeHeader {
     my $global   = shift;
 
     my $header =
-"<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<cgview backboneRadius=\"$settings->{backboneRadius}\" backboneColor=\"$settings->{backboneColor}\" backboneThickness=\"$settings->{backboneThickness}\" featureSlotSpacing=\"$settings->{featureSlotSpacing}\" labelLineLength=\"$settings->{labelLineLength}\" labelPlacementQuality=\"$settings->{labelPlacementQuality}\" labelLineThickness=\"$settings->{labelLineThickness}\" rulerPadding=\"$settings->{rulerPadding}\" tickThickness=\"$settings->{tickThickness}\" arrowheadLength=\"$settings->{arrowheadLength}\" rulerFont=\"SansSerif, plain, $settings->{rulerFontSize}\" rulerFontColor=\"$settings->{rulerFontColor}\" labelFont=\"SansSerif, plain, $settings->{labelFontSize}\" isLinear=\"$settings->{isLinear}\" minimumFeatureLength=\"$settings->{minimumFeatureLength}\" sequenceLength=\"$global->{length}\" height=\"$settings->{height}\" width=\"$settings->{width}\" globalLabel=\"$options->{global_label}\" moveInnerLabelsToOuter=\"$settings->{moveInnerLabelsToOuter}\" featureThickness=\"$settings->{featureThickness}\" tickLength=\"$settings->{tickLength}\" useInnerLabels=\"$settings->{useInnerLabels}\" shortTickColor=\"$settings->{tickColor}\" longTickColor=\"$settings->{tickColor}\" zeroTickColor=\"$settings->{tickColor}\" showBorder=\"$settings->{showBorder}\" borderColor=\"$settings->{borderColor}\" backgroundColor=\"$settings->{backgroundColor}\" tickDensity=\"$options->{tick_density}\">\n";
+"<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<cgview backboneRadius=\"$settings->{backboneRadius}\" backboneColor=\"$settings->{backboneColor}\" backboneThickness=\"$settings->{backboneThickness}\" featureSlotSpacing=\"$settings->{featureSlotSpacing}\" labelLineLength=\"$settings->{labelLineLength}\" labelPlacementQuality=\"$settings->{labelPlacementQuality}\" labelLineThickness=\"$settings->{labelLineThickness}\" rulerPadding=\"$settings->{rulerPadding}\" tickThickness=\"$settings->{tickThickness}\" shortTickThickness=\"$settings->{tickThickness}\" arrowheadLength=\"$settings->{arrowheadLength}\" rulerFont=\"SansSerif, plain, $settings->{rulerFontSize}\" rulerFontColor=\"$settings->{rulerFontColor}\" labelFont=\"SansSerif, plain, $settings->{labelFontSize}\" isLinear=\"$settings->{isLinear}\" minimumFeatureLength=\"$settings->{minimumFeatureLength}\" sequenceLength=\"$global->{length}\" height=\"$settings->{height}\" width=\"$settings->{width}\" globalLabel=\"$options->{global_label}\" moveInnerLabelsToOuter=\"$settings->{moveInnerLabelsToOuter}\" featureThickness=\"$settings->{featureThickness}\" tickLength=\"$settings->{tickLength}\" useInnerLabels=\"$settings->{useInnerLabels}\" shortTickColor=\"$settings->{tickColor}\" longTickColor=\"$settings->{tickColor}\" zeroTickColor=\"$settings->{tickColor}\" showBorder=\"$settings->{showBorder}\" borderColor=\"$settings->{borderColor}\" backgroundColor=\"$settings->{backgroundColor}\" tickDensity=\"$options->{tick_density}\">\n";
 
     open( OUTFILE, ">$options->{output}" ) or die("Cannot open file : $!");
     print( OUTFILE $header );
@@ -3585,7 +3652,7 @@ sub _writeGenes {
                     $cog_shading     = 'false';
 
                     #if (_isTrue($options->{use_opacity})) {
-                    #    $cog_opacity = ".20";
+                    #    $cog_opacity = "0.2";
                     #}
                     #else {
                     #    $cog_opacity = "1.0";
@@ -4258,7 +4325,7 @@ sub _writeBlastResults {
     my $opacity_for_blast;
 
     if ( _isTrue( $options->{use_opacity} ) ) {
-        $opacity_for_blast = ".20";
+        $opacity_for_blast = "0.5";
     }
     else {
         $opacity_for_blast = "1.0";
@@ -5009,13 +5076,13 @@ sub _writeBaseContent {
     my @outputArray = ();
     if ( $strand == 1 ) {
         push( @outputArray,
-"<featureSlot showShading=\"false\" strand=\"direct\" featureThickness=\""
+"<featureSlot showShading=\"false\" minimumFeatureLength=\"0.1\" strand=\"direct\" featureThickness=\""
               . $settings->{'featureThicknessPlot'}
               . "\">\n" );
     }
     else {
         push( @outputArray,
-"<featureSlot showShading=\"false\" strand=\"reverse\" featureThickness=\""
+"<featureSlot showShading=\"false\" minimumFeatureLength=\"0.1\" strand=\"reverse\" featureThickness=\""
               . $settings->{'featureThicknessPlot'}
               . "\">\n" );
     }
