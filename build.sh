@@ -45,3 +45,7 @@ echo "Maps created in 'test_maps/featureRange_element_series'."
 
 #create cgview.jar
 cp $CGVIEW_JAR ./target/cgview.jar
+
+#copy cgview.jar to other locations
+cp ./target/cgview.jar ./bin/
+cp ./target/cgview.jar ./docs/downloads/
