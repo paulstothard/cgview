@@ -27,7 +27,7 @@ java -jar cgview.jar -i overview.xml -o map.png
 
 ## Building CGView
 
-The `cgview.jar` can be built from project source code using [Apache Maven](https://maven.apache.org).
+Alternatively, the `cgview.jar` can be built from project source code using [Apache Maven](https://maven.apache.org).
 
 First clone the cgview repository and switch to the project directory:
 
