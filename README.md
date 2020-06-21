@@ -133,14 +133,13 @@ CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
       java -jar cgview.jar -i test.xml -s image_series
 ```
 
-## Making your own XML files for CGView
+## Creating XML files for CGView
 
-To generate a map for a genome of interest, use the included [cgview\_xml\_builder.pl](scripts/cgview_xml_builder/README.md) script. For example, the following commands can be run from the project directory:
+To generate a map for a genome of interest, use the included [cgview\_xml\_builder.pl](scripts/cgview_xml_builder/README.md) script. For example:
 
 ```bash
 #generate the CGView XML file
-perl scripts/cgview_xml_builder/cgview_xml_builder.pl \
--sequence scripts/cgview_xml_builder/test_input/R_denitrificans.gbk -output map.xml
+perl cgview_xml_builder.pl -sequence input.gbk -output map.xml
 
 #convert the CGView XML file into a map
 java -jar cgview.jar -i map.xml -o map.png
