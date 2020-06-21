@@ -3435,7 +3435,7 @@ public class Cgview implements CgviewConstants {
         ) *
         tickDensity
       );
-    System.out.println("approxBasesPerTick is " + approxBasesPerTick + ".");
+
     if (rulerUnits == BASES) {
       for (int i = 0; i < goodTicks.length; i++) {
         if (
