@@ -35,7 +35,7 @@ java -jar -Xmx1500m cgview.jar -i R_denitrificans.xml \
 
 * If CGView runs out of memory, increase the memory available to java using the `-Xmx` option. For example, try `-Xmx2000m`.
 
-* To see sample output, run the `test.sh` script. It may take more than an hour for all the maps to be created. The script requires that `cgview.jar` be accessible on your `PATH`. For example, use something like the following before running `test.sh`: `PATH=$PATH:~/path/to/cgview-folder`.
+* To see sample output, run the `test.sh` script. It may take more than an hour for all the maps to be created. You may need to edit the `cgview` variable near the beginning of the script to point to `cgview.jar` on your system.
 
 * To create smoother base composition plots, specify a larger sliding window value using the `-window` option in `cgview_xml_builder.pl`.
 
