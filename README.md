@@ -8,7 +8,7 @@ Sample maps created using CGView are available [here](https://paulstothard.githu
 
 Information on how to generate CGView maps is available [here](https://paulstothard.github.io/cgview/create_overview.html).
 
-CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca> 
+CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca>.
 
 ## CGView citation
 
@@ -16,9 +16,9 @@ CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca>
 
 ## Downloading CGView
 
-The executable cgview.jar with dependencies included can be downloaded [here](https://github.com/paulstothard/cgview/releases/).
+The executable `cgview.jar` with dependencies included can be downloaded [here](https://github.com/paulstothard/cgview/releases/).
 
-To test cgview.jar on your system you can try the following:
+To test `cgview.jar` on your system you can try the following:
 
 ```bash
 wget https://paulstothard.github.io/cgview/xml_sample/overview.xml
@@ -27,7 +27,7 @@ java -jar cgview.jar -i overview.xml -o map.png
 
 ## Building CGView
 
-The cgview.jar can be built from project source code using [Apache Maven](https://maven.apache.org).
+The `cgview.jar` can be built from project source code using [Apache Maven](https://maven.apache.org).
 
 First clone the cgview repository and switch to the project directory:
 
@@ -36,7 +36,7 @@ git clone git@github.com:paulstothard/cgview.git
 cd cgview
 ```
 
-Build the cgview.jar using **mvn package**:
+Build the `cgview.jar` using **mvn package**:
 
 ```bash
 mvn package
@@ -50,7 +50,7 @@ Alternatively, an included `build.sh` script can be used to execute **mvn packag
 
 The build process should create several CGView maps in the `test_maps` directory and updated API documentation and jar files in the `targets` directory.
 
-## Executing CGView:
+## Executing CGView
 
 The command-line interface is described in detail in the [CGView documentation](https://paulstothard.github.io/cgview/application.html). The following information can be obtained using `java -jar cgview.jar --help`: 
 
@@ -133,8 +133,33 @@ CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
       java -jar cgview.jar -i test.xml -s image_series
 ```
 
+## Making your own XML files for CGView
 
+To generate a map for a genome of interest, use the included [cgview\_xml\_builder.pl](scripts/cgview_xml_builder/README.md) script. For example, the following commands can be run from the project directory:
 
+```bash
+#generate the CGView XML file
+perl scripts/cgview_xml_builder/cgview_xml_builder.pl \
+-sequence scripts/cgview_xml_builder/test_input/R_denitrificans.gbk -output map.xml
+
+#convert the CGView XML file into a map
+java -jar cgview.jar -i map.xml -o map.png
+```
+
+Various options in `cgview_xml_build.pl` can be used to alter the appearance and contents of the map. The XML file can also be editied prior to drawing, to further improve the appearance and to change the layout. For details on the XML format see the [CGView XML format documentation](https://paulstothard.github.io/cgview/xml_overview.html).
+
+If your sequence in GenBank format consists of multiple contigs, first install and use [merge-gbk-records](https://github.com/kblin/merge-gbk-records) to merge the contigs, prior to generating the XML file. For example:
+
+```bash
+#merge the contigs into a single sequence
+merge-gbk-records -l 0 input.gbk -o merged.gbk
+
+#generate the CGView XML file using the merged contigs
+perl cgview_xml_builder.pl -sequence merged.gbk -o map.xml
+
+#convert the CGView XML file into a map
+java -jar cgview.jar -i map.xml -o map.png
+``` 
 
 
 
