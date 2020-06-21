@@ -42,3 +42,6 @@ echo "Maps created in 'test_maps'."
 echo "Testing command-line creation of linked image series."
 java -jar $CGVIEW_JAR -i ./sample_input/xml/navigable.xml -s ./test_maps/navigable -x 1,6
 echo "Maps created in 'test_maps/featureRange_element_series'."
+
+#create cgview.jar
+cp $CGVIEW_JAR ./target/cgview.jar
