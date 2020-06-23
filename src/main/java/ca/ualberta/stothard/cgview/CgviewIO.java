@@ -120,7 +120,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("");
     System.err.println("    java -jar cgview.jar --version");
     System.err.println("");
-    System.err.println("CREATING A SINGLE MAP IMAGE:");
+    System.err.println("CREATE A SINGLE MAP IMAGE:");
     System.err.println("");
     System.err.println("  usage:");
     System.err.println("");
@@ -174,7 +174,7 @@ public class CgviewIO implements CgviewConstants {
       "      java -jar cgview.jar -i test.xml -o map.png -f png"
     );
     System.err.println("");
-    System.err.println("CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:");
+    System.err.println("CREATE A NAVIGABLE SERIES OF LINKED MAP IMAGES:");
     System.err.println("");
     System.err.println("  usage:");
     System.err.println("");

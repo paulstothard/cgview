@@ -69,7 +69,7 @@ DISPLAY VERSION AND EXIT:
 
     java -jar cgview.jar --version
 
-CREATING A SINGLE MAP IMAGE:
+CREATE A SINGLE MAP IMAGE:
 
   usage:
 
@@ -103,7 +103,7 @@ CREATING A SINGLE MAP IMAGE:
 
       java -jar cgview.jar -i test.xml -o map.png -f png
 
-CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
+CREATE A NAVIGABLE SERIES OF LINKED MAP IMAGES:
 
   usage:
 
