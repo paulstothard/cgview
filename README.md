@@ -61,26 +61,26 @@ DISPLAY HELP AND EXIT:
 
   usage:
 
-     java -jar cgview.jar --help
+    java -jar cgview.jar --help
 
 DISPLAY VERSION AND EXIT:
 
   usage:
 
-     java -jar cgview.jar --version
+    java -jar cgview.jar --version
 
 CREATING A SINGLE MAP IMAGE:
 
-   usage:
+  usage:
 
-      java -jar cgview.jar -i <file> -o <file> [Options]
+    java -jar cgview.jar -i <file> -o <file> [Options]
 
-   required arguments:
+    required arguments:
 
       -i  Input file in CGView XML or TAB format.
       -o  Output file to create.
 
-   optional arguments (when used these override corresponding values specified in XML input):
+    optional arguments (when used these override corresponding values specified in XML input):
 
       -A  Font size for feature labels (default 10).
       -c  Base position to center on when using -z option (default 1).
@@ -99,22 +99,22 @@ CREATING A SINGLE MAP IMAGE:
       -W  Width of map (default 700).
       -z  Zoom multiplier (default 1).
 
-   example usage:
+    example usage:
 
       java -jar cgview.jar -i test.xml -o map.png -f png
 
 CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
 
-   usage:
+  usage:
 
-      java -jar cgview.jar -i <file> -s <directory> [Options]
+    java -jar cgview.jar -i <file> -s <directory> [Options]
 
-   required arguments:
+    required arguments:
 
       -i  Input file in CGView XML or TAB format.
       -s  Output directory for image series.
 
-   optional arguments (when used these override corresponding values specified in XML input):
+    optional arguments (when used these override corresponding values specified in XML input):
 
       -A  Font size for feature labels (default 10).
       -D  Font size for legends (default 8).
@@ -128,7 +128,7 @@ CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:
       -W  Width of map (default 700).
       -x  Zoom multipliers to use, comma-separated (default is 1,6,36).
 
-   example usage:
+    example usage:
 
       java -jar cgview.jar -i test.xml -s image_series
 ```

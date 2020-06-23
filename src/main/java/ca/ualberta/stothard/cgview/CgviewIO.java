@@ -112,29 +112,29 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("");
     System.err.println("  usage:");
     System.err.println("");
-    System.err.println("     java -jar cgview.jar --help");
+    System.err.println("    java -jar cgview.jar --help");
     System.err.println("");
     System.err.println("DISPLAY VERSION AND EXIT:");
     System.err.println("");
     System.err.println("  usage:");
     System.err.println("");
-    System.err.println("     java -jar cgview.jar --version");
+    System.err.println("    java -jar cgview.jar --version");
     System.err.println("");
     System.err.println("CREATING A SINGLE MAP IMAGE:");
     System.err.println("");
-    System.err.println("   usage:");
+    System.err.println("  usage:");
     System.err.println("");
     System.err.println(
-      "      java -jar cgview.jar -i <file> -o <file> [Options]"
+      "    java -jar cgview.jar -i <file> -o <file> [Options]"
     );
     System.err.println("");
-    System.err.println("   required arguments:");
+    System.err.println("    required arguments:");
     System.err.println("");
     System.err.println("      -i  Input file in CGView XML or TAB format.");
     System.err.println("      -o  Output file to create.");
     System.err.println("");
     System.err.println(
-      "   optional arguments (when used these override corresponding values specified in XML input):"
+      "    optional arguments (when used these override corresponding values specified in XML input):"
     );
     System.err.println("");
     System.err.println("      -A  Font size for feature labels (default 10).");
@@ -168,7 +168,7 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("      -W  Width of map (default 700).");
     System.err.println("      -z  Zoom multiplier (default 1).");
     System.err.println("");
-    System.err.println("   example usage:");
+    System.err.println("    example usage:");
     System.err.println("");
     System.err.println(
       "      java -jar cgview.jar -i test.xml -o map.png -f png"
@@ -176,19 +176,19 @@ public class CgviewIO implements CgviewConstants {
     System.err.println("");
     System.err.println("CREATING A NAVIGABLE SERIES OF LINKED MAP IMAGES:");
     System.err.println("");
-    System.err.println("   usage:");
+    System.err.println("  usage:");
     System.err.println("");
     System.err.println(
-      "      java -jar cgview.jar -i <file> -s <directory> [Options]"
+      "    java -jar cgview.jar -i <file> -s <directory> [Options]"
     );
     System.err.println("");
-    System.err.println("   required arguments:");
+    System.err.println("    required arguments:");
     System.err.println("");
     System.err.println("      -i  Input file in CGView XML or TAB format.");
     System.err.println("      -s  Output directory for image series.");
     System.err.println("");
     System.err.println(
-      "   optional arguments (when used these override corresponding values specified in XML input):"
+      "    optional arguments (when used these override corresponding values specified in XML input):"
     );
     System.err.println("");
     System.err.println("      -A  Font size for feature labels (default 10).");
@@ -213,7 +213,7 @@ public class CgviewIO implements CgviewConstants {
       "      -x  Zoom multipliers to use, comma-separated (default is 1,6,36)."
     );
     System.err.println("");
-    System.err.println("   example usage:");
+    System.err.println("    example usage:");
     System.err.println("");
     System.err.println(
       "      java -jar cgview.jar -i test.xml -s image_series"
