@@ -279,4 +279,9 @@ other arguments:
 
 -log - A log file for recording progress and error messages. [File]. Default is
 to not write a log file.
+
+example usage:
+
+  perl cgview_xml_builder.pl -sequence test_input/prokka_multicontig.gbk \
+  -output prokka_map.xml -gc_content T -gc_skew T -size large-v2
 ```
