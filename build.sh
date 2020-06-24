@@ -58,3 +58,6 @@ mv cgview_xml_builder.tar.gz ./docs/downloads/
 
 #add cgview_xml_builder.pl to ./docs/downloads
 cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docs/downloads/
+
+#add prokka_multicontig.gbk to ./docs/downloads
+cp ./scripts/cgview_xml_builder/test_input/prokka_multicontig.gbk ./docs/downloads/
