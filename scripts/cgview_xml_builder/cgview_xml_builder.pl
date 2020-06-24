@@ -5441,6 +5441,7 @@ perl cgview_xml_builder.pl -sequence <file> -output <file> [Options]
 required arguments:
 
 -sequence - Input file in FASTA, EMBL, or GenBank format.
+
 -output - The CGView XML file to create.
 
 optional arguments:

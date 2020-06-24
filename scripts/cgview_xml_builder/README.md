@@ -66,6 +66,7 @@ usage:
 required arguments:
 
 -sequence - Input file in FASTA, EMBL, or GenBank format.
+
 -output - The CGView XML file to create.
 
 optional arguments:
