@@ -49,9 +49,9 @@ cp $CGVIEW_JAR ./target/cgview.jar
 #add cgview.jar to bin
 cp ./target/cgview.jar ./bin/
 
-#add cgview.jar to docs/downloads for docker image
+#add cgview.jar to docs/downloads
 cp ./target/cgview.jar ./docs/downloads/
 
-#add cgview_xml_builder to docs/downloads for docker image
-tar -C ./scripts -cvzf cgview_xml_builder.tar.gz cgview_xml_builder
+#add cgview_xml_builder to docs/downloads
+tar --exclude=".*" -C ./scripts -cvzf cgview_xml_builder.tar.gz cgview_xml_builder
 mv cgview_xml_builder.tar.gz ./docs/downloads/
