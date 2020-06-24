@@ -52,12 +52,12 @@ cp ./target/cgview.jar ./bin/
 #add cgview.jar to ./docs/downloads
 cp ./target/cgview.jar ./docs/downloads/
 
-#add cgview_xml_builder to ./docs/downloads
-tar --exclude=".*" -C ./scripts -cvzf cgview_xml_builder.tar.gz cgview_xml_builder
-mv cgview_xml_builder.tar.gz ./docs/downloads/
-
-#add cgview_xml_builder.pl to ./docs/downloads
-cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docs/downloads/
+#add files to ./docker
+cp ./target/cgview.jar ./docker
+cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docker
 
 #add prokka_multicontig.gbk to ./docs/downloads
 cp ./scripts/cgview_xml_builder/test_input/prokka_multicontig.gbk ./docs/downloads/
+
+#add sample XML to ./docs/downloads
+cp ./docs/xml_sample/overview.xml ./docs/downloads/

@@ -9,8 +9,7 @@ RUN apt-get update && apt-get install -y \
   default-jre \
   expat \
   libexpat-dev \
-  perl \
-  wget
+  perl
 
 RUN cpanm --force XML::DOM::XPath
 
@@ -21,6 +20,6 @@ RUN cpanm CPAN::Meta \
 
 WORKDIR /usr/bin
 
-RUN wget https://paulstothard.github.io/cgview/downloads/cgview.jar
+COPY cgview.jar .
 
-RUN wget https://paulstothard.github.io/cgview/downloads/cgview_xml_builder.pl
+COPY cgview_xml_builder.pl .
