@@ -142,8 +142,9 @@ To generate a map for a genome of interest, use the included [cgview\_xml\_build
 cd scripts/cgview_xml_builder
 
 #generate the CGView XML file for the sample Prokka output
-perl cgview_xml_builder.pl -sequence test_input/prokka_multicontig.gbk -output prokka_map.xml \
--gc_content T -gc_skew T -size large-v2
+perl cgview_xml_builder.pl -sequence test_input/prokka_multicontig.gbk \
+-output prokka_map.xml -gc_content T -gc_skew T -size large-v2 \
+-tick_density 0.05 -draw_divider_rings T -custom showBorder=false
 
 #convert the CGView XML file into a map
 java -jar ../../bin/cgview.jar -i prokka_map.xml -o prokka_map.png
