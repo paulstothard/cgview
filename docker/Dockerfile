@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
   cpanminus \
   default-jre \
   expat \
-  git \
   libexpat-dev \
   perl \
   wget
@@ -20,10 +19,8 @@ RUN cpanm CPAN::Meta \
  Bio::SeqUtils \ 
  Tie::IxHash
 
-WORKDIR /usr/local/bin
+WORKDIR /usr/bin
 
-COPY cgview.jar .
+RUN wget https://paulstothard.github.io/cgview/downloads/cgview.jar
 
-COPY cgview_xml_builder.pl .
-
-RUN ls -la
+RUN wget https://paulstothard.github.io/cgview/downloads/cgview_xml_builder.pl

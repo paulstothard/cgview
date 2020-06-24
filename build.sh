@@ -56,6 +56,5 @@ cp ./target/cgview.jar ./docs/downloads/
 tar --exclude=".*" -C ./scripts -cvzf cgview_xml_builder.tar.gz cgview_xml_builder
 mv cgview_xml_builder.tar.gz ./docs/downloads/
 
-#copy files to ./docker for image
-cp ./bin/cgview.jar ./docker/
-cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docker/
+#add cgview_xml_builder.pl to ./docs/downloads
+cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docs/downloads/
