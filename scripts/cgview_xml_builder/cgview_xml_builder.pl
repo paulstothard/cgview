@@ -73,6 +73,7 @@ my %options = (
     use_opacity            => 'F',
     scale_blast            => 'T',
     show_sequence_features => 'T',
+    show_contigs           => 'T',
     draw_divider_rings     => 'F',
     font_size              => undef,
     gene_decoration        => 'arrow',
@@ -228,7 +229,8 @@ my %global = (
     format    => undef,
     length    => undef,
     accession => undef,
-    topology  => "circular"
+    topology  => "circular",
+    contigs   => []
 );
 
 my %param = (
@@ -271,6 +273,7 @@ GetOptions(
     'use_opacity=s'            => \$options{use_opacity},
     'scale_blast=s'            => \$options{scale_blast},
     'show_sequence_features=s' => \$options{show_sequence_features},
+    'show_contigs=s'           => \$options{show_contigs},
     'draw_divider_rings=s'     => \$options{draw_divider_rings},
     'global_label=s'           => \$options{global_label},
     'font_size=s'              => \$options{font_size},
@@ -666,16 +669,16 @@ if ( $global{format} eq "fasta" ) {
 }
 
 #try to determine topology from genbank or embl record
-if ( ( $global{format} eq "embl" ) || ( $global{format} eq "genbank" ) ) {
-    if ( $seqObject->is_circular ) {
-        $settings{isLinear} = "false";
-        $global{topology}   = "circular";
-    }
-    else {
-        $settings{isLinear} = "true";
-        $global{topology}   = "linear";
-    }
-}
+#if ( ( $global{format} eq "embl" ) || ( $global{format} eq "genbank" ) ) {
+#    if ( $seqObject->is_circular ) {
+#        $settings{isLinear} = "false";
+#        $global{topology}   = "circular";
+#    }
+#    else {
+#        $settings{isLinear} = "true";
+#        $global{topology}   = "linear";
+#    }
+#}
 
 #user-supplied values take precedence
 if ( _isTrue( $options{linear} ) ) {
@@ -1338,14 +1341,10 @@ sub _adjustSettingsBasedOnSize {
         $settings->{minimumFeatureLength}  = "1.0";
         $settings->{tickLength}            = "45";
         $settings->{labelPlacementQuality} = "better";
-        $settings->{isLinear}              = "false";
         $settings->{featureOpacity}        = "0.9";
         $settings->{featureOpacityOther}   = "0.9";
-        $settings->{showBorder}            = "false";
-        $global->{topology}                = "circular";
-        $options->{tick_density}           = "0.05";
-        $options->{draw_divider_rings}     = "T";
 
+        #custom colors for this size type
         $settings->{proteinColor}   = "rgb(55,126,184)";
         $settings->{tRNAColor}      = "rgb(228,26,28)";
         $settings->{rRNAColor}      = "rgb(204,204,0)";
@@ -1837,8 +1836,23 @@ sub _getSeqObject {
 
     my @seqs = ();
 
+    my $start = 1;
+
     while ( my $seq = $in->next_seq() ) {
+
+        my $contig_start = $start;
+        my $contig_end   = $start + $seq->length() - 1;
+
+        my %contig = (
+            start => $contig_start,
+            end   => $contig_end
+        );
+
+        push( @{ $param->{global}->{contigs} }, \%contig );
+
         push( @seqs, $seq );
+
+        $start = $contig_end + 1;
     }
 
     #merge multi-contig sequences
@@ -4298,6 +4312,13 @@ sub _drawDivider {
     my $opacity     = $settings->{'featureOpacity'};
     my @outputArray = ();
 
+    #if showing contigs increase thickness to double the backbone thickness
+    if (   ( scalar( @{ $global->{contigs} } ) > 1 )
+        && ( _isTrue( $options{'show_contigs'} ) ) )
+    {
+        $proportion_of_backbone = 2.0;
+    }
+
     my $decoration = "arc";
     if ( $strand == 1 ) {
         push( @outputArray,
@@ -4312,12 +4333,53 @@ sub _drawDivider {
               . "\" showShading=\"true\" strand=\"reverse\">\n" );
     }
 
-    push( @outputArray,
-        "<feature color=\"$divider_color\" decoration=\"$decoration\">\n" );
-    push( @outputArray,
-        "<featureRange start=\"1\" stop=\"$global->{length}\">\n" );
-    push( @outputArray, "</featureRange>\n" );
-    push( @outputArray, "</feature>\n" );
+    if (   ( scalar( @{ $global->{contigs} } ) == 1 )
+        || ( !( _isTrue( $options{'show_contigs'} ) ) ) )
+    {
+
+        push( @outputArray,
+            "<feature color=\"$divider_color\" decoration=\"$decoration\">\n" );
+        push( @outputArray,
+            "<featureRange start=\"1\" stop=\"$global->{length}\">\n" );
+        push( @outputArray, "</featureRange>\n" );
+        push( @outputArray, "</feature>\n" );
+
+    }
+    else {
+        #even-number contigs
+        push( @outputArray,
+"<feature color=\"$divider_color\" decoration=\"$decoration\" proportionOfThickness=\"0.50\" radiusAdjustment=\"1.0\" >\n"
+        );
+
+        my $count = 0;
+        foreach my $contig ( @{ $global->{contigs} } ) {
+            $count++;
+            if ( $count % 2 == 0 ) {
+                push( @outputArray,
+"<featureRange start=\"$contig->{start}\" stop=\"$contig->{end}\">\n"
+                );
+                push( @outputArray, "</featureRange>\n" );
+            }
+        }
+        push( @outputArray, "</feature>\n" );
+
+        #odd-number contigs
+        push( @outputArray,
+"<feature color=\"$divider_color\" decoration=\"$decoration\" proportionOfThickness=\"0.50\" radiusAdjustment=\"0.0\" >\n"
+        );
+
+        $count = 0;
+        foreach my $contig ( @{ $global->{contigs} } ) {
+            $count++;
+            if ( $count % 2 == 1 ) {
+                push( @outputArray,
+"<featureRange start=\"$contig->{start}\" stop=\"$contig->{end}\">\n"
+                );
+                push( @outputArray, "</featureRange>\n" );
+            }
+        }
+        push( @outputArray, "</feature>\n" );
+    }
 
     push( @outputArray, "</featureSlot>\n" );
     open( OUTFILE, "+>>" . $options->{"output"} )
@@ -5575,6 +5637,9 @@ option are drawn with height proportional to score [T/F]. Default is T.
 
 -show_sequence_features - Whether to draw features contained in the supplied
 '-sequence' file, if it is a GenBank or EMBL file. [T/F]. Default is T.
+
+-show_contigs - Whether to stagger divider rings to show the boundaries of
+contigs in sequences consisting of multiple contigs. [T/F]. Default is T.
 
 -draw_divider_rings - Whether to draw divider rings between feature rings.
 [T/F]. Default is F.

@@ -201,6 +201,9 @@ option are drawn with height proportional to score [T/F]. Default is T.
 -show_sequence_features - Whether to draw features contained in the supplied
 '-sequence' file, if it is a GenBank or EMBL file. [T/F]. Default is T.
 
+-show_contigs - Whether to stagger divider rings to show the boundaries of
+contigs in sequences consisting of multiple contigs. [T/F]. Default is T.
+
 -draw_divider_rings - Whether to draw divider rings between feature rings.
 [T/F]. Default is F.
 

@@ -8,8 +8,9 @@ fi
 
 #test contig merging and new size setting large-v2
 perl cgview_xml_builder.pl -sequence test_input/prokka_multicontig.gbk \
+-output test_output/prokka_multicontig.xml \
 -gc_content T -gc_skew T -size large-v2 \
--output test_output/prokka_multicontig.xml
+-tick_density 0.05 -draw_divider_rings T -custom showBorder=false
 
 java -jar -Xmx2000m $cgview -i test_output/prokka_multicontig.xml \
 -o test_output/prokka_multicontig.png -f png
