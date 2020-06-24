@@ -46,6 +46,12 @@ echo "Maps created in 'test_maps/featureRange_element_series'."
 #create cgview.jar
 cp $CGVIEW_JAR ./target/cgview.jar
 
-#copy cgview.jar to other locations
+#add cgview.jar to bin
 cp ./target/cgview.jar ./bin/
+
+#add cgview.jar to docs/downloads for docker image
 cp ./target/cgview.jar ./docs/downloads/
+
+#add cgview_xml_builder to docs/downloads for docker image
+tar -C ./scripts -cvzf cgview_xml_builder.tar.gz cgview_xml_builder
+mv cgview_xml_builder.tar.gz ./docs/downloads/
