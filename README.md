@@ -1,5 +1,4 @@
-![CGView map](sample1.png) ![CGView map](sample2.png)
-
+<img src="sample1.png" alt="drawing" width="200"/>
 
 # CGView
 CGView is a Java package for generating high quality, zoomable maps of circular genomes.
