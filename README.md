@@ -2,17 +2,50 @@
 
 
 # CGView
-CGView is a Java package for generating high quality, zoomable maps of circular genomes. Its primary purpose is to serve as a component of sequence annotation pipelines, and as a means of generating visual output suitable for the web.
+CGView is a Java package for generating high quality, zoomable maps of circular genomes.
 
 Sample maps created using CGView are available [here](https://paulstothard.github.io/cgview/gallery.html).
-
-Information on how to generate CGView maps is available [here](https://paulstothard.github.io/cgview/create_overview.html).
 
 CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca>.
 
 ## CGView citation
 
 [Stothard P, Wishart DS (2005) Circular genome visualization and exploration using CGView. Bioinformatics 21:537-539.](https://pubmed.ncbi.nlm.nih.gov/15479716/)
+
+## Using the CGView Docker image
+
+Pull the Docker image:
+
+```bash
+docker pull pstothard/cgview
+```
+
+Download a test file:
+
+```bash
+wget https://paulstothard.github.io/cgview/downloads/prokka_multicontig.gbk
+```
+
+Run the Docker image and use `cgview_xml_builder.pl` to create a [CGView XML](https://paulstothard.github.io/cgview/xml_overview.html) file:
+
+```bash
+docker run -it --rm -v $(pwd):/dir -w /dir pstothard/cgview \
+perl /usr/bin/cgview_xml_builder.pl -sequence prokka_multicontig.gbk \
+-gc_content T -gc_skew T -size large-v2 -tick_density 0.05 \
+-draw_divider_rings T -custom showBorder=false \
+-output map.xml
+```
+
+Run the Docker image and use `cgview.jar` to create a graphical map from the XML file:
+
+```bash
+docker run -it --rm -v $(pwd):/dir -w /dir pstothard/cgview \
+java -jar /usr/bin/cgview.jar -i map.xml -o map.png
+```
+
+Both `map.xml` and `map.png` are written to the current directory on the host system.
+
+The `cgview_xml_builder.pl` program has many [options](scripts/cgview_xml_builder/README.md) for altering the contents of the map and the [XML output](https://paulstothard.github.io/cgview/xml_overview.html) can be edited to further adjust map appearance. The `cgview.jar` program has [options](#cgview-options) for specifying image format.
 
 ## Downloading CGView
 
@@ -50,7 +83,7 @@ Alternatively, an included `build.sh` script can be used to execute **mvn packag
 
 The build process should create several CGView maps in the `test_maps` directory and updated API documentation and jar files in the `targets` directory.
 
-## Executing CGView
+## CGView options
 
 The command-line interface is described in detail in the [CGView documentation](https://paulstothard.github.io/cgview/application.html). The following information can be obtained using `java -jar cgview.jar --help`: 
 
