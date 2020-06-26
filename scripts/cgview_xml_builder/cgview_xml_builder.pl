@@ -699,8 +699,9 @@ _adjustSettingsBasedOnSize( $param{options}, $param{settings}, $param{global} );
 #check for extra options
 my @extra_options = ();
 foreach my $override ( @{ $options{custom} } ) {
- #   if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),]+)/ ) {
-if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),_\s]+)/ ) { 
+
+    #   if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),]+)/ ) {
+    if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),_\s]+)/ ) {
         my $key   = $1;
         my $value = $2;
 
