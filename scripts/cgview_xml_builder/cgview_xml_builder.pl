@@ -699,7 +699,8 @@ _adjustSettingsBasedOnSize( $param{options}, $param{settings}, $param{global} );
 #check for extra options
 my @extra_options = ();
 foreach my $override ( @{ $options{custom} } ) {
-    if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),]+)/ ) {
+ #   if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),]+)/ ) {
+if ( $override =~ m/([a-zA-Z_]+)\=([\d\.A-Za-z\(\),_\s]+)/ ) { 
         my $key   = $1;
         my $value = $2;
 
@@ -719,6 +720,18 @@ if (@extra_options) {
         print "Unknown custom option: $extra_option\n";
     }
     die("Unknown custom options given!");
+}
+
+#2020_06_26
+#if global_label provided as T or F need to convert
+if ( $options{global_label} =~ m/auto/i ) {
+    $options{global_label} = "auto";
+}
+elsif ( $options{global_label} =~ m/t/i ) {
+    $options{global_label} = "true";
+}
+else {
+    $options{global_label} = "false";
 }
 
 #2011_06_18
