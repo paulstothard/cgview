@@ -28,7 +28,7 @@ wget https://paulstothard.github.io/cgview/downloads/prokka_multicontig.gbk
 Run the Docker image and use `cgview_xml_builder.pl` to create a [CGView XML](https://paulstothard.github.io/cgview/xml_overview.html) file:
 
 ```bash
-docker run -it --rm -v $(pwd):/dir -w /dir pstothard/cgview \
+docker run --rm -v $(pwd):/dir -w /dir pstothard/cgview \
 perl /usr/bin/cgview_xml_builder.pl -sequence prokka_multicontig.gbk \
 -gc_content T -gc_skew T -size large-v2 -tick_density 0.05 \
 -draw_divider_rings T -custom showBorder=false \
@@ -38,7 +38,7 @@ perl /usr/bin/cgview_xml_builder.pl -sequence prokka_multicontig.gbk \
 Run the Docker image and use `cgview.jar` to create a graphical map from the XML file:
 
 ```bash
-docker run -it --rm -v $(pwd):/dir -w /dir pstothard/cgview \
+docker run --rm -v $(pwd):/dir -w /dir pstothard/cgview \
 java -jar /usr/bin/cgview.jar -i map.xml -o map.png
 ```
 
