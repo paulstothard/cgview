@@ -57,7 +57,7 @@ usage:
 
   perl cgview_xml_builder.pl -help
 
-CREATING AN XML FILE FOR CGVIEW
+CREATING AN XML FILE FOR CGVIEW:
 
 usage:
 
@@ -264,7 +264,7 @@ perl cgview_xml_builder.pl \
 
 -blast - One or more files of BLAST results to display. This option is used in
 the CGView Comparison Tool. The percent identity of each hit is plotted.
-[Files]. Multiple files canbe supplied using the '-blast' option, as
+[Files]. Multiple files can be supplied using the '-blast' option, as
 in the following example:
 
 perl cgview_xml_builder.pl \
