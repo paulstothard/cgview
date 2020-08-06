@@ -52,10 +52,6 @@ cp ./target/cgview.jar ./bin/
 #add cgview.jar to ./docs/downloads
 cp ./target/cgview.jar ./docs/downloads/
 
-#add files to ./docker
-cp ./target/cgview.jar ./docker
-cp ./scripts/cgview_xml_builder/cgview_xml_builder.pl ./docker
-
 #add prokka_multicontig.gbk to ./docs/downloads
 cp ./scripts/cgview_xml_builder/test_input/prokka_multicontig.gbk ./docs/downloads/
 
