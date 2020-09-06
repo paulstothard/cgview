@@ -4,8 +4,8 @@
 #'start', 'end', and 'strand' information is retrieved.
 
 seqname	source	feature	start	end	score	strand	frame
-RD0004		R
-RD0005		Q
+RD0004		RQ
+RD0005		QRL
 RD0006		R
 RD0007		R
 RD0008		L
