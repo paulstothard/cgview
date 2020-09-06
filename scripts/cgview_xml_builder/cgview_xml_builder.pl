@@ -3302,8 +3302,7 @@ sub _writeGenes {
     my $hasCogs = 0;
     foreach (@features) {
         my $feat = $_;
-        my $type = lc( $feat->{'feature'} );
-        if ( defined( $settings->{'cogColors'}->{ uc($type) } ) ) {
+        if ( defined( $settings->{'cogColors'}->{ $feat->{'feature'} } ) ) {
             $hasCogs = 1;
         }
     }
@@ -3469,8 +3468,14 @@ sub _writeGenes {
             $feature_decoration = 'arc';
             $not_cog            = 1;
         }
-        elsif ( defined( $settings->{'cogColors'}->{ uc($type) } ) ) {
-            $color   = $settings->{'cogColors'}->{ uc($type) };
+        elsif (
+            defined(
+                $settings->{'cogColors'}->{ substr( $feat->{'feature'}, 0, 1 ) }
+            )
+          )
+        {
+            $color =
+              $settings->{'cogColors'}->{ substr( $feat->{'feature'}, 0, 1 ) };
             $opacity = $settings->{'featureOpacity'};
             $is_cog  = 1;
         }
@@ -3670,13 +3675,8 @@ sub _writeGenes {
 #if there are multiple cogs, draw each as smaller feature taking up a portion of the feature slot
             if (
                 ( !$not_cog )
-                && (
-                    (
-                           ( $is_cog_count > 1 )
-                        && ( $is_cog_count == scalar(@letters) )
-                    )
-                    || ($is_cog)
-                )
+                && (   ( $is_cog_count > 0 )
+                    && ( $is_cog_count == scalar(@letters) ) )
               )
             {
 
