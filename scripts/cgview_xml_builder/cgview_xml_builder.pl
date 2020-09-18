@@ -4338,13 +4338,13 @@ sub _drawDivider {
         push( @outputArray,
                 "<featureSlot featureThickness=\""
               . $settings->{backboneThickness} * $proportion_of_backbone
-              . "\" showShading=\"true\" strand=\"direct\">\n" );
+              . "\" showShading=\"true\" minimumFeatureLength=\"0.1\" strand=\"direct\">\n" );
     }
     else {
         push( @outputArray,
                 "<featureSlot featureThickness=\""
               . $settings->{backboneThickness} * $proportion_of_backbone
-              . "\" showShading=\"true\" strand=\"reverse\">\n" );
+              . "\" showShading=\"true\" minimumFeatureLength=\"0.1\" strand=\"reverse\">\n" );
     }
 
     if (   ( scalar( @{ $global->{contigs} } ) == 1 )
