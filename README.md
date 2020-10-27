@@ -143,6 +143,12 @@ CREATE A NAVIGABLE SERIES OF LINKED MAP IMAGES:
       java -jar cgview.jar -i test.xml -s image_series
 ```
 
+If `cgview.jar` exits with `Exception in thread "main" java.lang.OutOfMemoryError: Java heap space`, use the `-Xmx` option to increase the memory allocation pool. For example, use the following command:
+
+```bash
+java -jar -Xmx2000m cgview.jar -i test.xml -o map.png -f png
+```
+
 ## Downloading CGView
 
 The executable `cgview.jar` with dependencies included can be downloaded [here](https://github.com/paulstothard/cgview/releases/).
