@@ -1,10 +1,10 @@
 #pGEC-Kl cloning vector
 %8190
 !strand		slot		start		stop	type			 label		mouseover	                   hyperlink
-forward		1		34		894	open_reading_frame	 ORF		ORF rf1 34-894			   http://wishart.biology.ualberta.ca/cgview/
-forward		2		34		894	gene			 AMPr		amp resistance 34-894		   http://wishart.biology.ualberta.ca/cgview/
-forward		1		1049		1668	origin_of_replication	 pBR322		pBR322 orgin 1049-1668		   http://wishart.biology.ualberta.ca/cgview/
-forward		1		2657		2963	origin_of_replication	 f1		f1 orgin 2657-2963		   http://wishart.biology.ualberta.ca/cgview/
+forward		1		34		894	open_reading_frame	 ORF		ORF rf1 34-894			   https://github.com/paulstothard/cgview
+forward		2		34		894	gene			 AMPr		amp resistance 34-894		   https://github.com/paulstothard/cgview
+forward		1		1049		1668	origin_of_replication	 pBR322		pBR322 orgin 1049-1668		   https://github.com/paulstothard/cgview
+forward		1		2657		2963	origin_of_replication	 f1		f1 orgin 2657-2963		   https://github.com/paulstothard/cgview
 forward		3		1301		1301	unique_restriction_site	 AlwNI		AlwNI 1301			   -
 forward		3		2099		2099	unique_restriction_site	 StuI		StuI 2099			   -		      		   	
 forward		3		2101		2101	unique_restriction_site	 XhoI		XhoI 2101			   -
