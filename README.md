@@ -188,4 +188,3 @@ The build process should create several CGView maps in the `test_maps` directory
 ## cgview\_xml\_builder.pl
 
 The [cgview\_xml\_builder.pl](scripts/cgview_xml_builder/README.md) script can be used to generate XML input for `cgview.jar` from DNA sequence files. See the included [README.md](scripts/cgview_xml_builder/README.md) file for information on usage and required Perl modules.
-__
