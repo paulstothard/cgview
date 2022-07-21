@@ -14,7 +14,7 @@ CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca>.
 
 ## Use CGView online
 
-[Proksee](https://proksee.ca) uses a [JavaScript version of CGView](https://github.com/stothard-group/cgview-js) to support interactive, browser-based map creation.
+[Proksee](https://proksee.ca) uses a [JavaScript version of CGView](https://github.com/stothard-group/cgview-js) to create interactive, web-based maps.
 
 ## Using the CGView Docker image
 
