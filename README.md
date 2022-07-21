@@ -1,6 +1,7 @@
 <img src="sample1.png" alt="drawing" width="200"/>
 
 # CGView
+
 CGView is a Java package for generating high quality, zoomable maps of circular genomes.
 
 Sample maps created using CGView are available [here](https://paulstothard.github.io/cgview/gallery.html).
@@ -10,6 +11,10 @@ CGView was written and is maintained by Paul Stothard <stothard@ualberta.ca>.
 ## CGView citation
 
 [Stothard P, Wishart DS (2005) Circular genome visualization and exploration using CGView. Bioinformatics 21:537-539.](https://pubmed.ncbi.nlm.nih.gov/15479716/)
+
+## Use CGView online
+
+[Proksee](https://proksee.ca) uses a [JavaScript version of CGView](https://github.com/stothard-group/cgview-js) to support interactive, browser-based map creation.
 
 ## Using the CGView Docker image
 
