@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ca.ualberta.stothard.cgview"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ca.ualberta.stothard.cgview"}];updateSearchResults();
