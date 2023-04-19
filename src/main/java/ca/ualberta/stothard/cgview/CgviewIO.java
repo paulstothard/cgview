@@ -17,7 +17,7 @@
  */
 package ca.ualberta.stothard.cgview;
 
-import jargs.gnu.CmdLineParser;
+import com.sanityinc.jargs.CmdLineParser;
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
