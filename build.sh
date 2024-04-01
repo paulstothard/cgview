@@ -13,30 +13,30 @@ mvn -Dexec.mainClass="ca.ualberta.stothard.cgview.CgviewTest3" -Dexec.classpathS
 CGVIEW_JAR=$(find ./target -name "*jar-with-dependencies.jar" -print -quit)
 
 #test command-line processing of xml input
-echo "Testing command-line processing of xml files in 'sample_input'."
+printf "Testing command-line processing of xml files in 'sample_input'.\n"
 find ./sample_input -name "*.xml" -type f | while IFS= read -r file; do
   f=$(basename "$file" .xml)
-  echo "Processing file '$file'."
+  printf "Processing file '%s'.\n" "$file"
   java -jar "$CGVIEW_JAR" -i "$file" -f png -o ./test_maps/"${f}".png
   java -jar "$CGVIEW_JAR" -i "$file" -f svg -o ./test_maps/"${f}".svg
 done
 
-echo "Maps created in 'test_maps'."
+printf "Maps created in 'test_maps'.\n"
 
 #test command-line processing of tab-delimited input
-echo "Testing command-line processing of tab files in 'sample_input'."
+printf "Testing command-line processing of tab files in 'sample_input'.\n"
 find ./sample_input -name "*.tab" -type f | while IFS= read -r file; do
   f=$(basename "$file" .tab)
-  echo "Processing file '$file'."
+  printf "Processing file '%s'.\n" "$file"
   java -jar "$CGVIEW_JAR" -i "$file" -f png -o ./test_maps/"${f}".png
   java -jar "$CGVIEW_JAR" -i "$file" -f svg -o ./test_maps/"${f}".svg
 done
-echo "Maps created in 'test_maps'."
+printf "Maps created in 'test_maps'.\n"
 
 #test command-line creation of linked image series
-echo "Testing command-line creation of linked image series."
+printf "Testing command-line creation of linked image series.\n"
 java -jar "$CGVIEW_JAR" -i ./sample_input/xml/navigable.xml -s ./test_maps/navigable -x 1,6
-echo "Maps created in 'test_maps/featureRange_element_series'."
+printf "Maps created in 'test_maps/featureRange_element_series'.\n"
 
 #create cgview.jar
 cp "$CGVIEW_JAR" ./target/cgview.jar
