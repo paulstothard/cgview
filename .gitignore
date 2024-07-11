@@ -1,5 +1,6 @@
 target/
 deploy/
+deploy
 test_maps/*
 pom.xml.tag
 pom.xml.releaseBackup
